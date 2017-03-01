@@ -1,0 +1,15 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">部门管理</h1>
+</div>
+<div class="wrapper-md" ng-controller="GridDepparmentCtrl">
+  <p>
+    <button ui-sref="app.deparment_add" class="btn m-b-xs btn-sm btn-primary btn-addon"><i class="fa fa-plus"></i>增加</button>
+    <button class="btn m-b-xs btn-sm btn-info btn-addon"><i class="fa fa-trash-o"></i>删除</button>
+    <button ui-sref="app.deparment_edit" class="btn m-b-xs btn-sm btn-warning btn-addon"><i class="fa fa-circle"></i>编辑</button>
+  </p>
+  <div class="panel panel-default">
+    <div class="table-responsive">
+      <div ng-grid="gridOptions" style="min-height:420px"></div>
+    </div>
+  </div>
+</div>

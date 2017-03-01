@@ -1,0 +1,13 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">合同管理</h1>
+</div>
+<div class="wrapper-md" ng-controller="GridContractCtrl">
+  <p>
+    <button ui-sref="app.contract_detail" class="btn m-b-xs btn-sm btn-warning btn-addon"><i class="fa fa-circle"></i>查看</button>
+  </p>
+  <div class="panel panel-default">
+    <div class="table-responsive">
+      <div ng-grid="gridOptions" style="min-height:420px"></div>
+    </div>
+  </div>
+</div>

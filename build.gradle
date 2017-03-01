@@ -1,0 +1,29 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'org.zerhusen'
+version = '1.0.0'
+
+description = """jwt-spring-security-demo"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+
+repositories {
+        
+     maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+}
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version:'1.4.3.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-rest', version:'1.4.3.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version:'1.4.3.RELEASE'
+    compile group: 'org.springframework.mobile', name: 'spring-mobile-device', version:'1.1.5.RELEASE'
+    compile group: 'io.jsonwebtoken', name: 'jjwt', version:'0.7.0'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
+    runtime group: 'com.h2database', name: 'h2', version:'1.4.193'
+    testCompile(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:'1.4.3.RELEASE') {
+exclude(module: 'commons-logging')
+    }
+}

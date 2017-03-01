@@ -1,0 +1,110 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">合同管理</h1>
+</div>
+<div class="wrapper-md">
+<div class="panel panel-default">
+    <div class="panel-heading font-bold">
+      增加／编辑
+    </div>
+    <div class="panel-body">
+      <form class="form-horizontal" method="get">
+        <div class="form-group">
+          <label class="col-sm-2 control-label">模版选择</label>
+          <div class="col-sm-10">
+            <select ui-jq="chosen" class="w-md">
+                <optgroup label="对孙吴合同模版组">
+                    <option value="AK">经济贸易合同模版</option>
+                    <option value="HI">地权管辖合同模版</option>
+                </optgroup>
+                <optgroup label="对曹魏合同模版组">
+                    <option value="CA">停战协议合同模版</option>
+                    <option value="NV">割地赔款合同模版</option>
+                    <option value="OR">经济贸易合同模版</option>
+                    <option value="WA">地权管辖合同模版</option>
+                </optgroup>
+            </select>
+          </div>
+        </div>
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="input-id-1">甲方单位名称</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="input-id-1">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="input-id-1">乙方单位名称</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="input-id-1">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">合同开始日期</label>
+          <div class="col-sm-10" ng-controller="DatepickerDemoCtrl">
+            <div class="input-group w-md">
+              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">合同终止日期</label>
+          <div class="col-sm-10" ng-controller="DatepickerDemoCtrl">
+            <div class="input-group w-md">
+              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">生成合同审批表</label>
+          <div class="col-sm-10">
+            <div class="checkbox">
+              <label class="i-checks">
+                <input type="checkbox" value="">
+                <i></i>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label"></label>
+          <div class="col-sm-10">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="xxxx审批表.xls" disabled>
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">查看</button>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">合同附件上传</label>
+          <div class="col-sm-10">
+            <input ui-jq="filestyle" type="file" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline v-middle input-s">
+          </div>
+        </div>
+
+
+
+
+        
+        
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+        <div class="form-group">
+          <div class="col-sm-4 col-sm-offset-2">
+            <button type="submit" class="btn btn-default">预览</button>
+            <button type="submit" class="btn btn-primary">保存</button>
+            <button type="submit" class="btn btn-info">提交</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

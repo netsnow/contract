@@ -1,0 +1,53 @@
+<!-- list -->
+<ul class="nav">
+  <div id="adminnav" ng-show="adminnavflg">
+    <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+      <span translate="aside.nav.HEADER">Navigation</span>（管理者）
+    </li>
+
+    <li ui-sref-active="active">
+      <a ui-sref="app.dashboard-v1">
+        <i class="glyphicon glyphicon-stats icon text-info-dker"></i>
+        <span class="font-bold" translate="aside.nav.DASHBOARD">Dashboard</span>
+      </a>
+    </li>
+    <li ui-sref-active="active">
+      <a ui-sref="app.deparment">
+        <i class="glyphicon glyphicon-calendar icon text-info-dker"></i>
+        <span class="font-bold" translate="aside.nav.DEPARTMENT">Department</span>
+      </a>
+    </li>
+    <li ui-sref-active="active">
+      <a ui-sref="app.member">
+        <i class="glyphicon glyphicon-calendar icon text-info-dker"></i>
+        <span class="font-bold" translate="aside.nav.MEMBER">Member</span>
+      </a>
+    </li>
+    <li ui-sref-active="active">
+      <a ui-sref="app.contract">
+        <i class="glyphicon glyphicon-calendar icon text-info-dker"></i>
+        <span class="font-bold" translate="aside.nav.CONTRACT">Contract</span>
+      </a>
+    </li>
+  </div>
+
+  <div id="usernav" ng-show="usernavflg">
+    <li class="hidden-folded padder m-t m-b-sm text-muted text-xs" hidden="hidden">
+      <span translate="aside.nav.HEADER" >Navigation</span>（使用者）
+    </li>
+
+    <li ui-sref-active="active">
+      <a ui-sref="app.user_dashboard">
+        <i class="glyphicon glyphicon-stats icon text-info-dker"></i>
+        <span class="font-bold" translate="aside.nav.DASHBOARD">Dashboard</span>
+      </a>
+    </li>
+    <li ui-sref-active="active">
+      <a ui-sref="app.user_contract">
+        <i class="glyphicon glyphicon-calendar icon text-info-dker"></i>
+        <span class="font-bold" translate="aside.nav.CONTRACT">Contract</span>
+      </a>
+    </li>
+  </div>
+</ul>
+<!-- / list -->
