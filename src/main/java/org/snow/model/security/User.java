@@ -1,5 +1,7 @@
 package org.snow.model.security;
 
+import org.snow.rest.Contract;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -57,6 +59,13 @@ public class User {
             joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
             inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
     private List<Authority> authorities;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "Contract",
+            joinColumns = {@JoinColumn(name = "USER_ID")})
+    private List<Contract> contracts;
+
 
     public Long getId() {
         return id;
@@ -120,6 +129,14 @@ public class User {
 
     public void setAuthorities(List<Authority> authorities) {
         this.authorities = authorities;
+    }
+
+    public List<Contract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
     }
 
     public Date getLastPasswordResetDate() {
