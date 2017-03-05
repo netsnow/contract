@@ -39,6 +39,7 @@
 .idea_modules/
 
 ### Maven template
+build/
 target/
 pom.xml.tag
 pom.xml.releaseBackup

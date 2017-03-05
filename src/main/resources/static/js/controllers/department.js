@@ -22,15 +22,15 @@ app.controller('GridDepparmentCtrl', ['$scope', '$http', function($scope, $http)
             var data;
             if (searchText) {
                 var ft = searchText.toLowerCase();
-                $http.get('js/controllers/department.json').success(function (largeLoad) {    
-                    data = largeLoad.filter(function(item) {
+                $http.get('departments',{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                    data = largeLoad._embedded.departments.filter(function(item) {
                         return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
                     });
                     $scope.setPagingData(data,page,pageSize);
-                });            
+                });
             } else {
-                $http.get('js/controllers/department.json').success(function (largeLoad) {
-                    $scope.setPagingData(largeLoad,page,pageSize);
+                $http.get('departments',{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                    $scope.setPagingData(largeLoad._embedded.departments,page,pageSize);
                 });
             }
         }, 100);

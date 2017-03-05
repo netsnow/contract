@@ -164,7 +164,13 @@ angular.module('app')
               })
                .state('app.deparment_add', {
                   url: '/deparment_add',
-                  templateUrl: 'tpl/deparment_detail.html'
+                  templateUrl: 'tpl/deparment_detail.html',
+                  resolve: {
+                      deps: ['uiLoad',
+                        function( uiLoad){
+                          return uiLoad.load('js/controllers/deparment_add.js');
+                      }]
+                  }
               })
               .state('app.deparment_edit', {
                   url: '/deparment_edit',
