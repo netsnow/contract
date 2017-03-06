@@ -20,7 +20,7 @@
 # .idea/uiDesigner.xml
 
 # Gradle:
-build/
+build/**／*.*
 # .idea/gradle.xml
 # .idea/libraries
 
