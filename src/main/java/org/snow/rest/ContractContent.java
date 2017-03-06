@@ -1,27 +1,34 @@
 package org.snow.rest;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Entity
-@Table(name = "CONTRACT")
-public class Contract {
+public class ContractContent {
+
 
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "CONTRACTNO", length = 15, unique = true)
+    @Column(name = "INPUTNAME", length = 40, unique = false)
     @NotNull
-    @Size(min = 4, max = 15)
-    private String contractno;
+    @Size(min = 1, max = 40)
+    private String inputname;
 
-    @Column(name = "CONTRACTNAME", length = 50, unique = false)
+    @Column(name = "INPUTTYPE", length = 20, unique = false)
     @NotNull
-    @Size(min = 4, max = 50)
-    private String contractname;
+    @Size(min = 1, max = 20)
+    private String inputtype;
+
+    @Column(name = "INPUTVALUE", length = 100, unique = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    private String inputvalue;
 
     public Long getId() {
         return id;
@@ -46,7 +53,6 @@ public class Contract {
     public void setContractname(String contractname) {
         this.contractname = contractname;
     }
-
 
 
 }
