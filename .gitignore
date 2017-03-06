@@ -20,6 +20,7 @@
 # .idea/uiDesigner.xml
 
 # Gradle:
+build/
 # .idea/gradle.xml
 # .idea/libraries
 
@@ -39,7 +40,7 @@
 .idea_modules/
 
 ### Maven template
-build/
+
 target/
 pom.xml.tag
 pom.xml.releaseBackup
