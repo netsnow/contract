@@ -8,7 +8,7 @@ spring:
     serialization:
       INDENT_OUTPUT: true
   datasource:
-    url: jdbc:mysql://localhost:3306/report
+    url: jdbc:mysql://localhost:3306/contract?useUnicode=true&characterEncoding=utf8
     username: root
     password:
     driverClassName: com.mysql.jdbc.Driver

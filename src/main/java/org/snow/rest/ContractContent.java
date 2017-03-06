@@ -38,20 +38,28 @@ public class ContractContent {
         this.id = id;
     }
 
-    public String getContractno() {
-        return contractno;
+    public String getInputname() {
+        return inputname;
     }
 
-    public void setContractno(String contractno) {
-        this.contractno = contractno;
+    public void setInputname(String inputname) {
+        this.inputname = inputname;
     }
 
-    public String getContractname() {
-        return contractname;
+    public String getInputtype() {
+        return inputtype;
     }
 
-    public void setContractname(String contractname) {
-        this.contractname = contractname;
+    public void setInputtype(String inputtype) {
+        this.inputtype = inputtype;
+    }
+
+    public String getInputvalue() {
+        return inputvalue;
+    }
+
+    public void setInputvalue(String inputvalue) {
+        this.inputvalue = inputvalue;
     }
 
 
