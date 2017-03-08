@@ -13,14 +13,22 @@ app.controller('FormDepartmentCtrl', ['$scope','$http','$state','$stateParams', 
 
 
     angular.element("#departmentadd").bind('click', function (event) {
+        var departmentdata = {};
+        departmentdata.departmentname = angular.element("#departmentname").val();
+        departmentdata.departmentshortname = angular.element("#departmentshortname").val();
+        if($stateParams.url == null){
+            $http.post('departments',departmentdata,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                alert("已保存");
+                $state.go('app.deparment');
+            });
+        }else{
+            $http.put($stateParams.url,departmentdata,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                alert("已保存");
+                $state.go('app.deparment');
+            });
 
-    	var departmentdata = {};
-    	departmentdata.departmentname = angular.element("#departmentname").val();
-    	departmentdata.departmentshortname = angular.element("#departmentshortname").val();
-        $http.post('departments',departmentdata,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
-            alert("已保存");
-            $state.go('app.deparment');
-        });
+        }
+
     });
 
   }])
