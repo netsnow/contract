@@ -6,6 +6,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 @RepositoryRestResource(collectionResourceRel = "templatedefines", path = "/templatedefines")
 @PreAuthorize("hasRole('ADMIN')")
-public interface TemplateDefineRepository extends PagingAndSortingRepository<Contract, Long> {
+public interface TemplateDefineRepository extends PagingAndSortingRepository<TemplateDefine, Long> {
 
 }

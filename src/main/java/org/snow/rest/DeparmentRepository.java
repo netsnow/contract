@@ -4,8 +4,8 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.security.access.prepost.PreAuthorize;
 
-@RepositoryRestResource(collectionResourceRel = "contracts", path = "/contracts")
+@RepositoryRestResource(collectionResourceRel = "departments", path = "/departments")
 @PreAuthorize("hasRole('ADMIN')")
-public interface ContractsRepository extends PagingAndSortingRepository<Contract, Long> {
+public interface DeparmentRepository extends PagingAndSortingRepository<Deparment, Long> {
 
 }
