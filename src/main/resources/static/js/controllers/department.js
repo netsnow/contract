@@ -2,14 +2,14 @@ app.controller('GridDepparmentCtrl', ['$scope', '$http', '$state', function($sco
     $scope.filterOptions = {
         filterText: "",
         useExternalFilter: true
-    }; 
+    };
     $scope.totalServerItems = 0;
     $scope.pagingOptions = {
         pageSizes: [20, 50, 100],
         pageSize: 20,
         currentPage: 1
-    };  
-    $scope.setPagingData = function(data, page, pageSize){  
+    };
+    $scope.setPagingData = function(data, page, pageSize){
         var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
         $scope.myData = pagedData;
         $scope.totalServerItems = data.length;
@@ -72,7 +72,12 @@ app.controller('GridDepparmentCtrl', ['$scope', '$http', '$state', function($sco
     });
 
     angular.element("#departmentedit").bind('click', function (event) {
-        alert("edit");
+        if($scope.mySelections.length == 1){
+            $deparmenturl = $scope.mySelections[0]._links.self.href;
+            $state.go('app.deparment_edit',{url:$deparmenturl});
+        }else{
+            alert("请选择一个部门进行编辑。");
+        }
     });
 
 }]);
