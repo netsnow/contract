@@ -3,6 +3,7 @@ package org.snow.rest;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "CONTRACT")
@@ -22,6 +23,10 @@ public class Contract {
     @NotNull
     @Size(min = 4, max = 50)
     private String contractname;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CONTRACT_ID", referencedColumnName = "ID")
+    private List<ContractContent> contractContents;
 
     public Long getId() {
         return id;
@@ -47,6 +52,12 @@ public class Contract {
         this.contractname = contractname;
     }
 
+    public List<ContractContent> getContractContents() {
+        return contractContents;
+    }
 
+    public void setContractContents(List<ContractContent> contractContents) {
+        this.contractContents = contractContents;
+    }
 
 }
