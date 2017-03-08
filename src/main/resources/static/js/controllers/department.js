@@ -1,4 +1,4 @@
-app.controller('GridDepparmentCtrl', ['$scope', '$http', function($scope, $http) {
+app.controller('GridDepparmentCtrl', ['$scope', '$http', '$state', function($scope, $http, $state) {
     $scope.filterOptions = {
         filterText: "",
         useExternalFilter: true
@@ -48,13 +48,31 @@ app.controller('GridDepparmentCtrl', ['$scope', '$http', function($scope, $http)
           $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
         }
     }, true);
-
+    $scope.mySelections = [];
     $scope.gridOptions = {
         data: 'myData',
         enablePaging: true,
         showFooter: true,
         totalServerItems: 'totalServerItems',
         pagingOptions: $scope.pagingOptions,
-        filterOptions: $scope.filterOptions
+        filterOptions: $scope.filterOptions,
+        selectedItems: $scope.mySelections,
+        columnDefs: [{field: 'departmentname', displayName: '部门名称'},
+                     {field: 'departmentshortname', displayName:'部门简称'},
+                     {field: '_links', displayName:'链接', visible:false}]
     };
+
+    angular.element("#departmentdelete").bind('click', function (event) {
+        $.each($scope.mySelections,function(idx, obj) {
+            $http.delete(obj._links.self.href,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                alert("已删除");
+                $state.go('app.deparment',{},{reload:true});
+            });
+        });
+    });
+
+    angular.element("#departmentedit").bind('click', function (event) {
+        alert("edit");
+    });
+
 }]);
