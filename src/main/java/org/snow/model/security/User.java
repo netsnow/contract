@@ -61,9 +61,7 @@ public class User {
     private List<Authority> authorities;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "Contract",
-            joinColumns = {@JoinColumn(name = "USER_ID")})
+    @JoinColumn(name = "USERID", referencedColumnName = "ID")
     private List<Contract> contracts;
 
 

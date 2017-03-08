@@ -27,15 +27,11 @@ public class Deparment {
     private String departmentshortname;
 
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "User",
-            joinColumns = {@JoinColumn(name = "DEPARMENT_ID")})
+    @JoinColumn(name = "DEPARMENT_ID", referencedColumnName = "ID")
     private List<User> users;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "Contract",
-            joinColumns = {@JoinColumn(name = "DEPARMENT_ID")})
+    @JoinColumn(name = "DEPARMENT_ID", referencedColumnName = "ID")
     private List<Contract> contracts;
 
     public Long getId() {
