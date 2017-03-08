@@ -25,9 +25,7 @@ public class Template {
     private String templatetype;
 
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "TemplateDefine",
-            joinColumns = {@JoinColumn(name = "Template_ID", referencedColumnName = "ID")})
+    @JoinColumn(name = "Template_ID", referencedColumnName = "ID")
     private List<TemplateDefine> templateDefines;
 
     public Long getId() {

@@ -61,7 +61,7 @@ public class User {
     private List<Authority> authorities;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USERID", referencedColumnName = "ID")
+    @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
     private List<Contract> contracts;
 
 
