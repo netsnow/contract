@@ -6,7 +6,7 @@
 app.controller('FormDepartmentCtrl', ['$scope','$http','$state','$stateParams', function($scope,$http,$state,$stateParams) {
 
     $http.get($stateParams.url,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
-        alert(largeLoad.departmentname);
+        //alert(largeLoad.departmentname);
         angular.element("#departmentname").val(largeLoad.departmentname)
         angular.element("#departmentshortname").val(largeLoad.departmentshortname);
     });

@@ -200,7 +200,13 @@ angular.module('app')
               })
               .state('app.member_add', {
                   url: '/member_add',
-                  templateUrl: 'tpl/member_detail.html'
+                  templateUrl: 'tpl/member_detail.html',
+                  resolve: {
+                      deps: ['uiLoad',
+                        function( uiLoad){
+                          return uiLoad.load('js/controllers/member_add.js');
+                      }]
+                  }
               })
               .state('app.member_edit', {
                   url: '/member_edit',

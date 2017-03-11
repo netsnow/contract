@@ -20,6 +20,7 @@ public class User {
     private Long id;
 
     @Column(name = "USERNO", length = 50, unique = true)
+    @NotNull
     @Size(min = 4, max = 50)
     private String userno;
 
@@ -34,21 +35,19 @@ public class User {
     private String password;
 
     @Column(name = "FIRSTNAME", length = 50)
-    @NotNull
     @Size(min = 4, max = 50)
     private String firstname;
 
     @Column(name = "LASTNAME", length = 50)
-    @NotNull
     @Size(min = 4, max = 50)
     private String lastname;
 
     @Column(name = "FULLNAME", length = 50)
+    @NotNull
     @Size(min = 4, max = 50)
     private String fullname;
 
     @Column(name = "EMAIL", length = 50)
-    @NotNull
     @Size(min = 4, max = 50)
     private String email;
 
