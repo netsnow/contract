@@ -19,6 +19,10 @@ public class User {
     //@SequenceGenerator(name = "user_seq", sequenceName = "user_seq", allocationSize = 1)
     private Long id;
 
+    @Column(name = "USERNO", length = 50, unique = true)
+    @Size(min = 4, max = 50)
+    private String userno;
+
     @Column(name = "USERNAME", length = 50, unique = true)
     @NotNull
     @Size(min = 4, max = 50)
@@ -38,6 +42,10 @@ public class User {
     @NotNull
     @Size(min = 4, max = 50)
     private String lastname;
+
+    @Column(name = "FULLNAME", length = 50)
+    @Size(min = 4, max = 50)
+    private String fullname;
 
     @Column(name = "EMAIL", length = 50)
     @NotNull
@@ -81,6 +89,14 @@ public class User {
         this.username = username;
     }
 
+    public String getUserno() {
+        return userno;
+    }
+
+    public void setUserno(String userno) {
+        this.userno = userno;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -103,6 +119,14 @@ public class User {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     public String getEmail() {
