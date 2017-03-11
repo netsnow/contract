@@ -14,10 +14,39 @@ app.controller('FormMemberCtrl', ['$scope','$http','$state','$stateParams', func
             angular.element(node).show();
             angular.element(node).attr("id","department"+idx);
             angular.element(node).children().children().attr("id","optionsRadios"+idx);
-            angular.element(node).children().children().attr("value",idx);
+
+            var str = obj._links.self.href;
+            var deparmentid = str.split("/")[str.split("/").length - 1];
+            angular.element(node).children().children().attr("value",deparmentid);
             angular.element(node).children().append(obj.departmentname);
             angular.element("#departmentradio").append(node);
         });
+    });
+
+    angular.element("#memberadd").bind('click', function (event) {
+        var data = {};
+        data.userno = angular.element("#userno").val();
+        data.username = angular.element("#username").val();
+        data.fullname = angular.element("#fullname").val();
+        data.password = angular.element("#password").val();
+        data.email = angular.element("#email").val();
+        data.deparment_id = angular.element("#department_id").val();
+        data.enabled = angular.element("#enabled").val();
+
+
+        if($stateParams.url == null){
+            $http.post('users',data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                alert("已保存");
+                $state.go('app.member');
+            });
+        }else{
+            $http.put($stateParams.url,data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                alert("已保存");
+                $state.go('app.member');
+            });
+
+        }
+
     });
 
   }])

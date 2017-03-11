@@ -79,7 +79,7 @@ app.controller('GridMemberCtrl', ['$scope', '$http', '$state', function($scope, 
             $memberurl = $scope.mySelections[0]._links.self.href;
             $state.go('app.member_edit',{url:$member});
         }else{
-            alert("请选择一个部门进行编辑。");
+            alert("请选择一个成员进行编辑。");
         }
     });
 
