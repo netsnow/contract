@@ -1,6 +1,7 @@
 package org.snow.model.security;
 
 import org.snow.rest.Contract;
+import org.snow.rest.Deparment;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -72,6 +73,9 @@ public class User {
     @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
     private List<Contract> contracts;
 
+    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.REFRESH }, optional = true)
+    @JoinColumn(name="DEPARMENT_ID")
+    private Deparment deparment;
 
     public Long getId() {
         return id;
