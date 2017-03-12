@@ -30,9 +30,10 @@ app.controller('FormMemberCtrl', ['$scope','$http','$state','$stateParams', func
         data.fullname = angular.element("#fullname").val();
         data.password = angular.element("#password").val();
         data.email = angular.element("#email").val();
-        data.deparment_id = angular.element("#department_id").val();
-        data.enabled = angular.element("#enabled").val();
-
+        data.deparment_id = $('input[name="optionsDepartment"]:checked').val();
+        data.enabled = $('input[name="optionsEnable"]:checked').val();
+        data.lastPasswordResetDate = '2016-01-01';
+        alert(JSON.stringify(data));
 
         if($stateParams.url == null){
             $http.post('users',data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
