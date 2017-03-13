@@ -5,7 +5,7 @@
   // Form controller
 app.controller('FormMemberCtrl', ['$scope','$http','$state','$stateParams', function($scope,$http,$state,$stateParams) {
     //init fuction
-
+    //department list get
     $http.get('departments',{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
         angular.element("#departmentradiotmplate").hide();
         $.each(largeLoad._embedded.departments,function(idx, obj) {
@@ -21,7 +21,21 @@ app.controller('FormMemberCtrl', ['$scope','$http','$state','$stateParams', func
             angular.element(node).children().append(obj.departmentname);
             angular.element("#departmentradio").append(node);
         });
+        //for edit
+        $http.get($stateParams.url,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+            //alert(largeLoad.departmentname);
+            angular.element("#userno").val(largeLoad.userno)
+            angular.element("#username").val(largeLoad.username);
+            angular.element("#fullname").val(largeLoad.fullname);
+            angular.element("#email").val(largeLoad.email);
+            angular.element('input[name="optionsDepartment"][value="' + largeLoad.deparmentId + '"]').attr("checked", "checked");
+            angular.element('input[name="optionsEnable"][value="' + largeLoad.enabled + '"]').attr("checked", "checked");
+            angular.element('input[name="optionsRoll"][value="' + largeLoad.authorities[0].name + '"]').attr("checked", "checked");
+            //alert(JSON.stringify(largeLoad));
+        });
+
     });
+
 
     angular.element("#memberadd").bind('click', function (event) {
         var data = {};

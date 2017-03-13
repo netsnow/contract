@@ -210,7 +210,14 @@ angular.module('app')
               })
               .state('app.member_edit', {
                   url: '/member_edit',
-                  templateUrl: 'tpl/member_detail.html'
+                  params:{"url":null},
+                  templateUrl: 'tpl/member_detail.html',
+                  resolve: {
+                      deps: ['uiLoad',
+                        function( uiLoad){
+                          return uiLoad.load('js/controllers/member_add.js');
+                      }]
+                  }
               })
               //contract
               .state('app.contract', {

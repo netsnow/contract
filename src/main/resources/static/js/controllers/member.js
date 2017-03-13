@@ -77,7 +77,7 @@ app.controller('GridMemberCtrl', ['$scope', '$http', '$state', function($scope, 
     angular.element("#memberedit").bind('click', function (event) {
         if($scope.mySelections.length == 1){
             $memberurl = $scope.mySelections[0]._links.self.href;
-            $state.go('app.member_edit',{url:$member});
+            $state.go('app.member_edit',{url:$memberurl});
         }else{
             alert("请选择一个成员进行编辑。");
         }
