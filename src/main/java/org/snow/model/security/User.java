@@ -1,6 +1,7 @@
 package org.snow.model.security;
 
 import org.snow.rest.Contract;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -105,7 +106,8 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        BCryptPasswordEncoder encode = new BCryptPasswordEncoder();
+        this.password = encode.encode(password);
     }
 
     public String getFirstname() {
