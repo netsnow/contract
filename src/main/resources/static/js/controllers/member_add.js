@@ -30,12 +30,12 @@ app.controller('FormMemberCtrl', ['$scope','$http','$state','$stateParams', func
         data.fullname = angular.element("#fullname").val();
         data.password = angular.element("#password").val();
         data.email = angular.element("#email").val();
-        data.deparment_id = $('input[name="optionsDepartment"]:checked').val();
+        data.deparmentId = $('input[name="optionsDepartment"]:checked').val();
         data.enabled = $('input[name="optionsEnable"]:checked').val();
         data.lastPasswordResetDate = '2016-01-01';
         var authorities = [];
         authorities[0] ={};
-        authorities[0].id = $('input[name="optionsRoll"]:checked').val();
+        authorities[0].name = $('input[name="optionsRoll"]:checked').val();
         data.authorities = authorities;
         alert(JSON.stringify(data));
 

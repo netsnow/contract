@@ -1,7 +1,5 @@
 package org.snow.rest;
 
-import org.snow.model.security.User;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -25,10 +23,6 @@ public class Deparment {
     @NotNull
     @Size(min = 4, max = 10)
     private String departmentshortname;
-
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "DEPARMENT_ID", referencedColumnName = "ID")
-    private List<User> users;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "DEPARMENT_ID", referencedColumnName = "ID")
@@ -56,14 +50,6 @@ public class Deparment {
 
     public void setDepartmentshortname(String departmentshortname) {
         this.departmentshortname = departmentshortname;
-    }
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
     }
 
     public List<Contract> getContracts() {

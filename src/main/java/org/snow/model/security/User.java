@@ -1,7 +1,6 @@
 package org.snow.model.security;
 
 import org.snow.rest.Contract;
-import org.snow.rest.Deparment;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -73,9 +72,9 @@ public class User {
     @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
     private List<Contract> contracts;
 
-    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.REFRESH }, optional = true)
-    @JoinColumn(name="DEPARMENT_ID")
-    private Deparment deparment;
+    @Column(name = "DEPARMENT_ID")
+    @NotNull
+    private Long deparmentId;
 
     public Long getId() {
         return id;
@@ -171,5 +170,13 @@ public class User {
 
     public void setLastPasswordResetDate(Date lastPasswordResetDate) {
         this.lastPasswordResetDate = lastPasswordResetDate;
+    }
+
+    public Long getDeparmentId() {
+        return deparmentId;
+    }
+
+    public void setDeparmentId(Long deparmentId) {
+        this.deparmentId = deparmentId;
     }
 }
