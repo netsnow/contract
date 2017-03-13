@@ -42,7 +42,12 @@ app.controller('FormMemberCtrl', ['$scope','$http','$state','$stateParams', func
         data.userno = angular.element("#userno").val();
         data.username = angular.element("#username").val();
         data.fullname = angular.element("#fullname").val();
-        data.password = angular.element("#password").val();
+
+        var pwd = angular.element("#password").val();
+        if(pwd != ""){
+            data.password = pwd;
+        }
+
         data.email = angular.element("#email").val();
         data.deparmentId = $('input[name="optionsDepartment"]:checked').val();
         data.enabled = $('input[name="optionsEnable"]:checked').val();
@@ -59,7 +64,7 @@ app.controller('FormMemberCtrl', ['$scope','$http','$state','$stateParams', func
                 $state.go('app.member');
             });
         }else{
-            $http.put($stateParams.url,data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+            $http.patch($stateParams.url,data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                 alert("已保存");
                 $state.go('app.member');
             });
