@@ -63,10 +63,39 @@ app.controller('GridContractCtrl', ['$scope', '$http', '$state', function($scope
                      {field: 'departmentname', displayName:'所属部门'},
                      {field: 'creatorname', displayName:'经办人'},
                      {field: 'creattime', displayName:'创建时间'},
+                     {field: 'enabled', displayName:'允许编辑'},
                      {field: '_links', displayName:'链接', visible:false}]
     };
 
 
+    angular.element("#statechangetrue").bind('click', function (event) {
+        $.each($scope.mySelections,function(idx, obj) {
+            var data = {};
+            data.enabled = 1;
+            $http.patch(obj._links.self.href,data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                alert("已更新");
+                $state.go('app.contract',{},{reload:true});
+            });
+        });
+    });
+    angular.element("#statechangefalse").bind('click', function (event) {
+        $.each($scope.mySelections,function(idx, obj) {
+            var data = {};
+            data.enabled = 0;
+            $http.patch(obj._links.self.href,data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                alert("已更新");
+                $state.go('app.contract',{},{reload:true});
+            });
+        });
+    });
 
+    angular.element("#contractview").bind('click', function (event) {
+        if($scope.mySelections.length == 1){
+            $no = $scope.mySelections[0].contractno;
+            $state.go('app.contract_detail',{no:$no});
+        }else{
+            alert("请选择一个合同进行查看。");
+        }
+    });
 
 }]);

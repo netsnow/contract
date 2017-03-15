@@ -236,7 +236,14 @@ angular.module('app')
               })
               .state('app.contract_detail', {
                   url: '/contract_detail',
-                  templateUrl: 'tpl/contract_detail.html'
+                  params:{"no":null},
+                  templateUrl: 'tpl/contract_detail.html',
+                  resolve: {
+                      deps: ['uiLoad',
+                        function( uiLoad){
+                          return uiLoad.load('js/controllers/contract_detail.js');
+                      }]
+                  }
               })
               //user_contract
               .state('app.user_contract', {
