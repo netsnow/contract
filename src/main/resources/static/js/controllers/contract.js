@@ -60,6 +60,9 @@ app.controller('GridContractCtrl', ['$scope', '$http', '$state', function($scope
         selectedItems: $scope.mySelections,
         columnDefs: [{field: 'contractno', displayName: '合同编号'},
                      {field: 'contractname', displayName:'合同名称'},
+                     {field: 'departmentname', displayName:'所属部门'},
+                     {field: 'creatorname', displayName:'经办人'},
+                     {field: 'creattime', displayName:'创建时间'},
                      {field: '_links', displayName:'链接', visible:false}]
     };
 
