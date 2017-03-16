@@ -93,7 +93,7 @@ app.controller('GridContractCtrl', ['$scope', '$http', '$state', function($scope
         if($scope.mySelections.length == 1){
             $no = $scope.mySelections[0].contractno;
             //$state.go('app.contract_detail',{no:$no});
-            window.open("http://"+window.location.host+"/pdf/web/viewer.html");
+            window.open("http://" + window.location.host + "/pdf/web/viewer.html?" + $no);
         }else{
             alert("请选择一个合同进行查看。");
         }
