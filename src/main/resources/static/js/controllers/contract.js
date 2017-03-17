@@ -116,6 +116,8 @@ app.controller('GridContractCtrl', ['$scope', '$http', '$state', function($scope
             alert("请选择一个合同附件进行下载。");
         }
     });
-
+    angular.element("#searchbtn").bind('click', function (event) {
+        $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage,angular.element("#searchtext").val());
+    });
 
 }]);
