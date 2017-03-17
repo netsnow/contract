@@ -80,4 +80,17 @@ app
       });
     }
 
+    $http.get('notices/1',{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+        angular.element("#noticetext").val(largeLoad.noticetext);
+    });
+
+    angular.element("#noticebtn").bind('click', function (event) {
+        var data = {};
+        data.noticetext = angular.element("#noticetext").val();
+        $http.put("notices/1",data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+            alert("已保存");
+            $state.go('app.dashboard-v1',{},{reload:true});
+        });
+    });
+
   }]);

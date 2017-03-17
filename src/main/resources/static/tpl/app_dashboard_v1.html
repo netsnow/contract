@@ -11,6 +11,7 @@
           <h1 class="m-n font-thin h3 text-black">首页</h1>
           <small class="text-muted">欢迎使用MySite管理系统</small>
         </div>
+        <!--
         <div class="col-sm-6 text-right hidden-xs">
           <div class="inline m-r text-left">
             <div class="m-b-xs">合同总数： <span class="text-muted">1290</span></div>
@@ -20,6 +21,7 @@
             <div class="m-b-xs">成员总数： <span class="text-muted">83</span></div>
           </div>
         </div>
+        -->
       </div>
     </div>
     <!-- / main header -->
@@ -30,9 +32,9 @@
         <div class="panel-body">
           <form role="form">
             <div class="form-group">
-              <input type="notice" class="form-control" placeholder="输入通知" value="系统将于今年2月30日起，进行无限期维护操作，请各位用户做好备份工作。">
+              <input id="noticetext" type="notice" class="form-control" placeholder="输入通知" value="">
             </div>
-            <button type="submit" class="btn btn-sm btn-primary">修改</button>
+            <button id="noticebtn" type="submit" class="btn btn-sm btn-primary">修改</button>
           </form>
         </div>
       </div>
