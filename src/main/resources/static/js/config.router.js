@@ -271,7 +271,13 @@ angular.module('app')
               //user_dashboard
               .state('app.user_dashboard', {
                   url: '/user_dashboard',
-                  templateUrl: 'tpl/user_dashboard.html'
+                  templateUrl: 'tpl/user_dashboard.html',
+                  resolve: {
+                    deps: ['$ocLazyLoad',
+                      function( $ocLazyLoad ){
+                        return $ocLazyLoad.load(['js/controllers/user_dashboard.js']);
+                    }]
+                  }
               })
           //custom end
               // table
