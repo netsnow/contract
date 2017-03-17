@@ -1,4 +1,4 @@
-app.controller('GridUserContractCtrl', ['$scope', '$http', function($scope, $http) {
+app.controller('GridUserContractCtrl', ['$scope', '$http', '$state', function($scope, $http, $state) {
     $scope.filterOptions = {
         filterText: "",
         useExternalFilter: true
@@ -22,15 +22,15 @@ app.controller('GridUserContractCtrl', ['$scope', '$http', function($scope, $htt
             var data;
             if (searchText) {
                 var ft = searchText.toLowerCase();
-                $http.get('js/controllers/user_contract.json').success(function (largeLoad) {    
-                    data = largeLoad.filter(function(item) {
+                $http.get('contracts/search/findByCreatorname?name='+$scope.username,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                    data = largeLoad._embedded.contracts.filter(function(item) {
                         return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
                     });
                     $scope.setPagingData(data,page,pageSize);
-                });            
+                });
             } else {
-                $http.get('js/controllers/user_contract.json').success(function (largeLoad) {
-                    $scope.setPagingData(largeLoad,page,pageSize);
+                $http.get('contracts/search/findByCreatorname?name='+$scope.username,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                    $scope.setPagingData(largeLoad._embedded.contracts,page,pageSize);
                 });
             }
         }, 100);
@@ -49,12 +49,22 @@ app.controller('GridUserContractCtrl', ['$scope', '$http', function($scope, $htt
         }
     }, true);
 
+    $scope.mySelections = [];
     $scope.gridOptions = {
         data: 'myData',
         enablePaging: true,
         showFooter: true,
         totalServerItems: 'totalServerItems',
         pagingOptions: $scope.pagingOptions,
-        filterOptions: $scope.filterOptions
+        filterOptions: $scope.filterOptions,
+        selectedItems: $scope.mySelections,
+        columnDefs: [{field: 'contractno', displayName: '合同编号'},
+                     {field: 'contractname', displayName:'合同名称'},
+                     {field: 'departmentname', displayName:'所属部门'},
+                     {field: 'creatorname', displayName:'经办人'},
+                     {field: 'creattime', displayName:'创建时间'},
+                     {field: 'enabled', displayName:'允许编辑'},
+                     {field: '_links', displayName:'链接', visible:false}]
     };
+
 }]);

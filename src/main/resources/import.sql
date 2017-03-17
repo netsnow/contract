@@ -28,7 +28,7 @@ INSERT INTO TEMPLATEDEFINE (ID, INPUTNAME, INPUTTYPE, TEMPLATE_ID, TEMPLATE_DEFI
 INSERT INTO TEMPLATEDEFINE (ID, INPUTNAME, INPUTTYPE, TEMPLATE_ID, TEMPLATE_DEFINES_ID) VALUES (2, '输入二', 'checkbox',1,2);
 
 INSERT INTO `contract` (`id`, `contractname`, `contractno`, `user_id`, `creatorname`,`deparment_id`,`departmentname`,`creattime`,`enabled`) VALUES(1, '合同一', 'ADT20170101001', 1,"admin", 1,"department1",'2016-01-01',1);
-INSERT INTO `contract` (`id`, `contractname`, `contractno`, `user_id`, `creatorname`,`deparment_id`,`departmentname`,`creattime`,`enabled`) VALUES(2, '合同二', 'ADT20170101002', 1,"admin", 1,"department1",'2016-01-01',1);
-INSERT INTO `contract` (`id`, `contractname`, `contractno`, `user_id`, `creatorname`,`deparment_id`,`departmentname`,`creattime`,`enabled`) VALUES(3, '合同三', 'ADT20170101003', 1,"admin", 1,"department1",'2016-01-01',1);
+INSERT INTO `contract` (`id`, `contractname`, `contractno`, `user_id`, `creatorname`,`deparment_id`,`departmentname`,`creattime`,`enabled`) VALUES(2, '合同二', 'ADT20170101002', 1,"baixue", 1,"department1",'2016-01-01',1);
+INSERT INTO `contract` (`id`, `contractname`, `contractno`, `user_id`, `creatorname`,`deparment_id`,`departmentname`,`creattime`,`enabled`) VALUES(3, '合同三', 'ADT20170101003', 1,"baixue", 1,"department1",'2016-01-01',0);
 
 INSERT INTO `notice` (`id`, `noticetext`) VALUES(1, '初始通知信息，请修改。');
