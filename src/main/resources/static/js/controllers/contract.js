@@ -89,14 +89,33 @@ app.controller('GridContractCtrl', ['$scope', '$http', '$state', function($scope
         });
     });
 
-    angular.element("#contractview").bind('click', function (event) {
+    angular.element("#contracttext").bind('click', function (event) {
         if($scope.mySelections.length == 1){
             $no = $scope.mySelections[0].contractno;
             //$state.go('app.contract_detail',{no:$no});
-            window.open("http://" + window.location.host + "/pdf/web/viewer.html?" + $no);
+            window.open("http://" + window.location.host + "/pdf/web/viewer.html?T" + $no);
         }else{
             alert("请选择一个合同进行查看。");
         }
     });
+    angular.element("#contractapprove").bind('click', function (event) {
+        if($scope.mySelections.length == 1){
+            $no = $scope.mySelections[0].contractno;
+            //$state.go('app.contract_detail',{no:$no});
+            window.open("http://" + window.location.host + "/pdf/web/viewer.html?A" + $no);
+        }else{
+            alert("请选择一个合同审批表进行查看。");
+        }
+    });
+    angular.element("#contractattachment").bind('click', function (event) {
+        if($scope.mySelections.length == 1){
+            $no = $scope.mySelections[0].contractno;
+            //$state.go('app.contract_detail',{no:$no});
+            window.open("http://" + window.location.host + "/file/attachment/" + $no);
+        }else{
+            alert("请选择一个合同附件进行下载。");
+        }
+    });
+
 
 }]);
