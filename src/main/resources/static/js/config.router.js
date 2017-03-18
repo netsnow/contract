@@ -262,7 +262,13 @@ angular.module('app')
               })
               .state('app.user_contract_add', {
                   url: '/user_contract_add',
-                  templateUrl: 'tpl/user_contract_detail.html'
+                  templateUrl: 'tpl/user_contract_detail.html',
+                  resolve: {
+                      deps: ['uiLoad',
+                        function( uiLoad){
+                          return uiLoad.load('js/controllers/user_contract_add.js');
+                      }]
+                  }
               })
               .state('app.user_contract_edit', {
                   url: '/user_contract_edit',
