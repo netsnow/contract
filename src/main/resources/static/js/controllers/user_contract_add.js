@@ -7,17 +7,39 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
     //init
     angular.element("#contractcontent").hide();
     $http.get("templates",{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
-        alert("ok");
-        var node = angular.element("#templatetmp").clone(true);
-        angular.element(node).show();
-    //    angular.element("#departmentname").val(largeLoad.departmentname)
-    //    angular.element("#departmentshortname").val(largeLoad.departmentshortname);
+        //alert("ok");
+        $.each(largeLoad._embedded.templates,function(idx, obj) {
+            var str = obj._links.self.href;
+            var templateid = str.split("/")[str.split("/").length - 1];
+            var templatetext = obj.templatetype + ":" + obj.templatename;
+            angular.element("#template").append("<option value='"+templateid+"'>"+templatetext+"</option>");
+        });
+        angular.element("#template").trigger("chosen:updated");
     });
 
     //template selet button event
     angular.element("#template").bind('change', function (event) {
-        alert(angular.element("#template").val()+":"+angular.element("#template").text());
-        angular.element("#contractcontent").show();
+        var templateid = angular.element("#template").val()
+        alert(templateid+":"+angular.element("#template").text());
+        if(templateid!=""){
+
+            angular.element("#contractcontent").show();
+            $http.get("templates/"+templateid+"/templateDefines",{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                angular.element("#dyncontent").children().remove();
+                $.each(largeLoad._embedded.templatedefines,function(idx, obj) {
+                    alert(obj.inputname);
+                    var node = angular.element("#textinput").clone(true);
+                    angular.element(node).show();
+                    angular.element(node).attr("id",idx);
+                    angular.element(node).find("label").text(obj.inputname);
+                    angular.element(node).find("input").attr("id",obj.inputname);
+                    angular.element("#dyncontent").append(node);
+                });
+            });
+        }else{
+            angular.element("#contractcontent").hide();
+        }
+
     });
 
   }])

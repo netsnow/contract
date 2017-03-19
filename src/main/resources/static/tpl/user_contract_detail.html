@@ -18,19 +18,17 @@
         </div>
         <div class="line line-dashed b-b line-lg pull-in"></div>
         <div id="contractcontent">
-          <div class="form-group">
+          <div id="textinput" class="form-group">
             <label class="col-sm-2 control-label" for="input-id-1">甲方单位名称</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" id="input-id-1">
             </div>
           </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label" for="input-id-1">乙方单位名称</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="input-id-1">
-            </div>
+          <div id="dyncontent">
+
           </div>
-          <div class="form-group">
+          <!--
+          <div id="dateinput" class="form-group">
             <label class="col-sm-2 control-label">合同开始日期</label>
             <div class="col-sm-10" ng-controller="DatepickerDemoCtrl">
               <div class="input-group w-md">
@@ -41,17 +39,7 @@
               </div>
             </div>
           </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">合同终止日期</label>
-            <div class="col-sm-10" ng-controller="DatepickerDemoCtrl">
-              <div class="input-group w-md">
-                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-                <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
-              </div>
-            </div>
-          </div>
+          -->
           <div class="line line-dashed b-b line-lg pull-in"></div>
           <div class="form-group">
             <label class="col-sm-2 control-label">生成合同审批表</label>
