@@ -26,6 +26,8 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
             angular.element("#contractcontent").show();
             $http.get("templates/"+templateid+"/templateDefines",{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                 angular.element("#dyncontent").children().remove();
+                var inputname=[];
+                var inputename=[];
                 $.each(largeLoad._embedded.templatedefines,function(idx, obj) {
                     //alert(obj.inputname);
                     var node = angular.element("#textinput").clone(true);
@@ -35,7 +37,12 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                     angular.element(node).find("input").attr("id",obj.inputename);
                     angular.element("#dyncontent").append(node);
                     angular.element("#textinput").hide();
+                    inputname[idx] = obj.inputname;
+                    inputename[idx] = obj.inputename;
+                    //alert($scope.inputename[idx]);
                 });
+                $scope.inputname = inputname;
+                $scope.inputename = inputename;
             });
         }else{
             angular.element("#contractcontent").hide();
@@ -48,16 +55,20 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
     });
 
     angular.element("#savebutton").bind('click', function (event) {
-        alert("666");
+        //alert("666");
         //contract insert
         var data = {};
         data.contractno = angular.element("#contractno").val();
         data.contractname = angular.element("#contractname").val();
-        data.departmentname = "aaaa";
+        data.departmentname = $scope.departmentname;
         data.creatorname = $scope.username;
-        data.creattime = '2016-01-01';
+        var d = new Date();
+        data.creattime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
         data.enabled = 1;
         $http.post('contracts',data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+            $.each($scope.inputename,function(idx, obj) {
+                alert(obj);
+            });
             alert("已保存");
             $state.go('app.user_contract');
         });

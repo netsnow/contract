@@ -87,6 +87,14 @@ angular.module('app')
         }else{
           //username set
           $scope.username = response.data.username;
+          //deparment set
+          $http.get('users/search/findByUsername?name='+$scope.username,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+              var deparmentid = largeLoad._embedded.users[0].deparmentId;
+              $http.get('departments/'+deparmentid,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                  $scope.departmentname = largeLoad.departmentname
+                  //alert($scope.departmentname);
+              });
+          });
           //menu set
           var role = 0;
           $.each(response.data.authorities,function(idx, obj) {
