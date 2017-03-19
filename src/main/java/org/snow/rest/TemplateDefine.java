@@ -18,6 +18,11 @@ public class TemplateDefine {
     @Size(min = 4, max = 50)
     private String inputname;
 
+    @Column(name = "INPUTENAME", length = 50, unique = false)
+    @NotNull
+    @Size(min = 4, max = 50)
+    private String inputename;
+
     @Column(name = "INPUTTYPE", length = 50, unique = false)
     @NotNull
     @Size(min = 4, max = 50)
@@ -37,6 +42,14 @@ public class TemplateDefine {
 
     public void setInputname(String inputname) {
         this.inputname = inputname;
+    }
+
+    public String getInputename() {
+        return inputename;
+    }
+
+    public void setInputename(String inputename) {
+        this.inputename = inputename;
     }
 
     public String getInputtype() {
