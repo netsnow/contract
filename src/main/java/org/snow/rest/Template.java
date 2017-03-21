@@ -16,12 +16,12 @@ public class Template {
 
     @Column(name = "TEMPLATENAME", length = 50, unique = true)
     @NotNull
-    @Size(min = 4, max = 50)
+    @Size(min = 1, max = 50)
     private String templatename;
 
     @Column(name = "TEMPLATETYPE", length = 50, unique = false)
     @NotNull
-    @Size(min = 4, max = 50)
+    @Size(min = 1, max = 50)
     private String templatetype;
 
     @OneToMany(fetch = FetchType.EAGER)

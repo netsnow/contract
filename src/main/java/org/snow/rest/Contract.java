@@ -17,22 +17,22 @@ public class Contract {
 
     @Column(name = "CONTRACTNO", length = 15, unique = true)
     @NotNull
-    @Size(min = 4, max = 15)
+    @Size(min = 1, max = 15)
     private String contractno;
 
     @Column(name = "CONTRACTNAME", length = 50, unique = false)
     @NotNull
-    @Size(min = 4, max = 50)
+    @Size(min = 1, max = 50)
     private String contractname;
 
     @Column(name = "DEPARTMENTNAME", length = 50, unique = false)
     @NotNull
-    @Size(min = 4, max = 50)
+    @Size(min = 1, max = 50)
     private String departmentname;
 
     @Column(name = "CREATORNAME", length = 50, unique = false)
     @NotNull
-    @Size(min = 4, max = 50)
+    @Size(min = 1, max = 50)
     private String creatorname;
 
     @Column(name = "CREATTIME")

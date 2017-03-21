@@ -16,12 +16,12 @@ public class Deparment {
 
     @Column(name = "DEPARMENTNAME", length = 50, unique = true)
     @NotNull
-    @Size(min = 4, max = 50)
+    @Size(min = 1, max = 50)
     private String departmentname;
 
     @Column(name = "DEPARMENTSHORTNAME", length = 10, unique = true)
     @NotNull
-    @Size(min = 4, max = 10)
+    @Size(min = 1, max = 10)
     private String departmentshortname;
 
     @OneToMany(fetch = FetchType.LAZY)

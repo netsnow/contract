@@ -15,17 +15,17 @@ public class TemplateDefine {
 
     @Column(name = "INPUTNAME", length = 50, unique = false)
     @NotNull
-    @Size(min = 4, max = 50)
+    @Size(min = 1, max = 50)
     private String inputname;
 
     @Column(name = "INPUTENAME", length = 50, unique = false)
     @NotNull
-    @Size(min = 4, max = 50)
+    @Size(min = 1, max = 50)
     private String inputename;
 
     @Column(name = "INPUTTYPE", length = 50, unique = false)
     @NotNull
-    @Size(min = 4, max = 50)
+    @Size(min = 1, max = 50)
     private String inputtype;
 
     public Long getId() {
