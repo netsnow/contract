@@ -66,5 +66,23 @@ app.controller('GridUserContractCtrl', ['$scope', '$http', '$state', function($s
                      {field: 'enabled', displayName:'允许编辑'},
                      {field: '_links', displayName:'链接', visible:false}]
     };
+    angular.element("#deletebutton").bind('click', function (event) {
+        $.each($scope.mySelections,function(idx, obj) {
+            $http.delete(obj._links.self.href,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                var str = obj._links.self.href;
+                var contractid = str.split("/")[str.split("/").length - 1];
+                $http.get("contractcontents/search/findByContractid?id="+contractid,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                    $.each(largeLoad._embedded.contractcontents,function(idx, obj) {
+                        $http.delete(obj._links.self.href,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
 
+                        });
+                    });
+                });
+            });
+        });
+        alert("已删除");
+        $state.go('app.user_contract',{},{reload:true});
+        //alert("666");
+
+    });
 }]);

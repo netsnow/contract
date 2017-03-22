@@ -77,7 +77,7 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                 contentdata.contractid = contractid;
                 $http.post('contractcontents',contentdata,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                 });
-                alert(JSON.stringify(contentdata));
+                //alert(JSON.stringify(contentdata));
             });
             alert("已保存");
             $state.go('app.user_contract');
