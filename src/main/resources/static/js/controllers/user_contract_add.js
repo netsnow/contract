@@ -66,8 +66,18 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
         data.creattime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
         data.enabled = 1;
         $http.post('contracts',data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+            var str = largeLoad._links.self.href;
+            var contractid = str.split("/")[str.split("/").length - 1];
             $.each($scope.inputename,function(idx, obj) {
-                alert(obj);
+                var contentdata = {};
+                contentdata.inputename = obj;
+                contentdata.inputname = $scope.inputname[idx];
+                contentdata.inputtype = "text";
+                contentdata.inputvalue = angular.element("#"+obj).val();
+                contentdata.contractid = contractid;
+                $http.post('contractcontents',contentdata,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                });
+                alert(JSON.stringify(contentdata));
             });
             alert("已保存");
             $state.go('app.user_contract');

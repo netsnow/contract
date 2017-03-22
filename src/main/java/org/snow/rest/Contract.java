@@ -44,10 +44,6 @@ public class Contract {
     @NotNull
     private Boolean enabled;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CONTRACT_ID", referencedColumnName = "ID")
-    private List<ContractContent> contractContents;
-
     public Long getId() {
         return id;
     }
@@ -72,13 +68,6 @@ public class Contract {
         this.contractname = contractname;
     }
 
-    public List<ContractContent> getContractContents() {
-        return contractContents;
-    }
-
-    public void setContractContents(List<ContractContent> contractContents) {
-        this.contractContents = contractContents;
-    }
     public String getDepartmentname() {
         return departmentname;
     }

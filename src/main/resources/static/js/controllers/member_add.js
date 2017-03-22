@@ -56,7 +56,7 @@ app.controller('FormMemberCtrl', ['$scope','$http','$state','$stateParams', func
         authorities[0] ={};
         authorities[0].name = $('input[name="optionsRoll"]:checked').val();
         data.authorities = authorities;
-        alert(JSON.stringify(data));
+        //alert(JSON.stringify(data));
 
         if($stateParams.url == null){
             $http.post('users',data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {

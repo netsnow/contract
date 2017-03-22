@@ -13,6 +13,10 @@ public class ContractContent {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "CONTRACT_ID")
+    @NotNull
+    private Long contractid;
+
     @Column(name = "INPUTENAME", length = 40, unique = false)
     @NotNull
     @Size(min = 1, max = 40)
@@ -39,6 +43,14 @@ public class ContractContent {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getContractid() {
+        return contractid;
+    }
+
+    public void setContractid(Long contractid) {
+        this.contractid = contractid;
     }
 
     public String getInputename() {
