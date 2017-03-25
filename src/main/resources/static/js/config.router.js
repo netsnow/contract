@@ -272,7 +272,14 @@ angular.module('app')
               })
               .state('app.user_contract_edit', {
                   url: '/user_contract_edit',
-                  templateUrl: 'tpl/user_contract_detail.html'
+                  params:{"url":null},
+                  templateUrl: 'tpl/user_contract_detail.html',
+                  resolve: {
+                      deps: ['uiLoad',
+                        function( uiLoad){
+                          return uiLoad.load('js/controllers/user_contract_add.js');
+                      }]
+                  }
               })
               //user_dashboard
               .state('app.user_dashboard', {

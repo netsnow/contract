@@ -85,4 +85,15 @@ app.controller('GridUserContractCtrl', ['$scope', '$http', '$state', function($s
         //alert("666");
 
     });
+
+    angular.element("#editbutton").bind('click', function (event) {
+        if($scope.mySelections.length == 1){
+            $url = $scope.mySelections[0]._links.self.href;
+            $state.go('app.user_contract_edit',{url:$url});
+        }else{
+            alert("请选择一个合同进行编辑。");
+        }
+    });
+
+
 }]);

@@ -17,6 +17,20 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
         angular.element("#template").trigger("chosen:updated");
     });
 
+    //edit init
+    if($stateParams.url){
+        alert($stateParams.url);
+        angular.element("#template").hide();
+        angular.element("#contractcontent").show();
+        $http.get($stateParams.url,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+            //alert(largeLoad.departmentname);
+            angular.element("#contractno").val(largeLoad.contractno);
+            angular.element("#contractname").val(largeLoad.contractname);
+            //alert(JSON.stringify(largeLoad));
+        });
+
+    }
+
     //template selet button event
     angular.element("#template").bind('change', function (event) {
         var templateid = angular.element("#template").val()
