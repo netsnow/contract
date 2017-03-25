@@ -19,13 +19,34 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
 
     //edit init
     if($stateParams.url){
-        alert($stateParams.url);
-        angular.element("#template").hide();
+        //alert($stateParams.url);
+        angular.element("#templateselect").hide();
         angular.element("#contractcontent").show();
+        angular.element("#textinput").hide();
         $http.get($stateParams.url,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
             //alert(largeLoad.departmentname);
+            var str = largeLoad._links.self.href;
+            var contractid = str.split("/")[str.split("/").length - 1];
             angular.element("#contractno").val(largeLoad.contractno);
             angular.element("#contractname").val(largeLoad.contractname);
+            //find contractcontent
+            $http.get("contractcontents/search/findByContractid?id="+contractid,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                var contractcontentid = [];
+                $.each(largeLoad._embedded.contractcontents,function(idx, obj) {
+                    var str1 = obj._links.self.href;
+                    contractcontentid[idx] = str1.split("/")[str1.split("/").length - 1];
+
+                    var node = angular.element("#textinput").clone(true);
+                    angular.element(node).show();
+                    angular.element(node).attr("id",idx);
+                    angular.element(node).find("label").text(obj.inputname);
+                    angular.element(node).find("input").attr("id",contractcontentid[idx]);
+                    angular.element(node).find("input").val(obj.inputvalue);
+                    angular.element("#dyncontent").append(node);
+                    angular.element("#textinput").hide();
+                });
+                $scope.contractcontentid = contractcontentid;
+            });
             //alert(JSON.stringify(largeLoad));
         });
 
@@ -79,23 +100,36 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
         var d = new Date();
         data.creattime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
         data.enabled = 1;
-        $http.post('contracts',data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
-            var str = largeLoad._links.self.href;
-            var contractid = str.split("/")[str.split("/").length - 1];
-            $.each($scope.inputename,function(idx, obj) {
-                var contentdata = {};
-                contentdata.inputename = obj;
-                contentdata.inputname = $scope.inputname[idx];
-                contentdata.inputtype = "text";
-                contentdata.inputvalue = angular.element("#"+obj).val();
-                contentdata.contractid = contractid;
-                $http.post('contractcontents',contentdata,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+        if($stateParams.url == null){
+            $http.post('contracts',data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                var str = largeLoad._links.self.href;
+                var contractid = str.split("/")[str.split("/").length - 1];
+                $.each($scope.inputename,function(idx, obj) {
+                    var contentdata = {};
+                    contentdata.inputename = obj;
+                    contentdata.inputname = $scope.inputname[idx];
+                    contentdata.inputtype = "text";
+                    contentdata.inputvalue = angular.element("#"+obj).val();
+                    contentdata.contractid = contractid;
+                    $http.post('contractcontents',contentdata,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                    });
+                    //alert(JSON.stringify(contentdata));
                 });
-                //alert(JSON.stringify(contentdata));
+                alert("已保存");
+                $state.go('app.user_contract');
             });
-            alert("已保存");
+        }else{
+            $.each($scope.contractcontentid,function(idx, obj) {
+                var contentdata = {};
+                contentdata.inputvalue = angular.element("#"+obj).val();
+                $http.patch('contractcontents/'+obj,contentdata,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                });
+
+            });
+            alert("已修改！");
             $state.go('app.user_contract');
-        });
+        }
+
 
     });
 
