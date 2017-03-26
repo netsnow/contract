@@ -5,33 +5,33 @@ import com.lowagie.text.pdf.AcroFields;
 import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfReader;
 import com.lowagie.text.pdf.PdfStamper;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.font.PDType0Font;
-import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
-import org.apache.pdfbox.pdmodel.interactive.form.PDTextField;
-import org.apache.pdfbox.text.PDFTextStripper;
-import org.hibernate.mapping.Map;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 @RestController
 public class ContractPdfRestService {
 
-    @RequestMapping(path = "/contractpdf/{id}", method = RequestMethod.GET)
-    public static String saveContractPdf(@PathVariable("id") String id) throws IOException, DocumentException {
+    @RequestMapping(path = "/contractpdf", method = RequestMethod.POST)
+    public static String saveContractPdf(@RequestBody String jsonstr) throws IOException, DocumentException,JSONException {
         //1 准备要填充的数据
+        JSONObject jsObj = new JSONObject(jsonstr);
+        Iterator<String> it = jsObj.keys();
         HashMap paraMap = new HashMap();
-        paraMap.put("fill_2",id);
+        while (it.hasNext()) {
+            String json_key = it.next();
+            Object json_value = jsObj.get(json_key);
+            if (json_value!=null){
+                paraMap.put(json_key,json_value);
+            }
+        }
         //2 读入pdf表单
-        PdfReader reader = new PdfReader("src/main/resources/static/tmpdata/pdf/template/template1.pdf");
+        PdfReader reader = new PdfReader("src/main/resources/static/tmpdata/pdf/template/template_jixieshebei.pdf");
         //3 根据表单生成一个新的pdf
         PdfStamper ps = new PdfStamper(reader,new FileOutputStream("src/main/resources/static/tmpdata/pdf/contract1.pdf"));
         //4 获取pdf表单
@@ -58,26 +58,42 @@ public class ContractPdfRestService {
         return "ok111";
     }
 
-    @RequestMapping(path = "/pdfbox/{id}", method = RequestMethod.GET)
-    public static String saveContractPdfpdfbox(@PathVariable("id") String id) throws IOException {
-        String formTemplate = "src/main/resources/static/tmpdata/pdf/template/template1.pdf";
 
-        // load the document
-        PDDocument pdfDocument = PDDocument.load(new File(formTemplate));
-        PDAcroForm acroForm = pdfDocument.getDocumentCatalog().getAcroForm();
-
-        if (acroForm != null){
-            PDTextField field = (PDTextField) acroForm.getField( "fill_2" );
-            //b = sa.getBytes("utf-8");//编码  
-            //sa = new String(b, "utf-8");//解码
-            //field.setValue(String.valueOf(name.getBytes("GBK")));
-            field.setValue("1111");
-            //field = (PDTextField) acroForm.getField( "fieldsContainer.nestedSampleField" );
-            //field.setValue("Text Entry");
+    @RequestMapping(path = "/contentget", method = RequestMethod.POST)
+    public static String contentget(@RequestBody String jsonstr) throws JSONException {
+        JSONObject jsObj = new JSONObject(jsonstr);
+        Iterator<String> it = jsObj.keys();
+        String str = "";
+        while (it.hasNext()) {
+            String json_key = it.next();
+            Object json_value = jsObj.get(json_key);
+            if (json_value!=null){
+                str = str + "//////json_key:" + json_key + ",json_value:" + json_value + ",类型:" + json_value.getClass().getSimpleName();
+            }
         }
-        pdfDocument.save("src/main/resources/static/tmpdata/pdf/contract2.pdf");
-        pdfDocument.close();
-        return "ok";
+
+        return str;
     }
+    //@RequestMapping(path = "/pdfbox/{id}", method = RequestMethod.GET)
+    //public static String saveContractPdfpdfbox(@PathVariable("id") String id) throws IOException {
+    //    String formTemplate = "src/main/resources/static/tmpdata/pdf/template/template1.pdf";
+    //
+    //    // load the document
+    //    PDDocument pdfDocument = PDDocument.load(new File(formTemplate));
+    //    PDAcroForm acroForm = pdfDocument.getDocumentCatalog().getAcroForm();
+    //
+    //    if (acroForm != null){
+    //        PDTextField field = (PDTextField) acroForm.getField( "fill_2" );
+    //        //b = sa.getBytes("utf-8");//编码
+    //        //sa = new String(b, "utf-8");//解码
+    //        //field.setValue(String.valueOf(name.getBytes("GBK")));
+    //        field.setValue("1111");
+    //        //field = (PDTextField) acroForm.getField( "fieldsContainer.nestedSampleField" );
+    //        //field.setValue("Text Entry");
+    //    }
+    //    pdfDocument.save("src/main/resources/static/tmpdata/pdf/contract2.pdf");
+    //    pdfDocument.close();
+    //    return "ok";
+    //}
 
 }
