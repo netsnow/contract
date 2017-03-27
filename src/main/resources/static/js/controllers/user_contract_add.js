@@ -85,6 +85,10 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
     });
 
     angular.element("#previewbutton").bind('click', function (event) {
+        var json = {};
+        json["id"] = 15;
+        json["name"] = "snow";
+        alert(JSON.stringify(json));
         alert("666");
 
     });
@@ -104,6 +108,7 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
             $http.post('contracts',data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                 var str = largeLoad._links.self.href;
                 var contractid = str.split("/")[str.split("/").length - 1];
+                var pdffield ={};
                 $.each($scope.inputename,function(idx, obj) {
                     var contentdata = {};
                     contentdata.inputename = obj;
@@ -112,6 +117,9 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                     contentdata.inputvalue = angular.element("#"+obj).val();
                     contentdata.contractid = contractid;
                     $http.post('contractcontents',contentdata,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                    });
+                    pdffield[obj] = contentdata.inputvalue;
+                    $http.post('contractpdf',pdffield,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                     });
                     //alert(JSON.stringify(contentdata));
                 });
