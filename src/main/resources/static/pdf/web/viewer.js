@@ -15,8 +15,11 @@
 /*globals require, chrome */
 
 'use strict';
-
-var DEFAULT_URL = 'compressed.tracemonkey-pldi-09.pdf';
+var url = location.search;
+var arr=url.split("?");
+var fileid = arr[1];
+var DEFAULT_URL = 'contractpdf/'+ fileid +'.pdf';
+//var DEFAULT_URL = 'compressed.tracemonkey-pldi-09.pdf';
 
 
   var pdfjsWebLibs = {

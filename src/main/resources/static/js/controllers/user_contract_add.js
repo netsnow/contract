@@ -54,7 +54,7 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
 
     //template selet button event
     angular.element("#template").bind('change', function (event) {
-        var templateid = angular.element("#template").val()
+        var templateid = angular.element("#template").val();
         //alert(templateid+":"+angular.element("#template").text());
         if(templateid!=""){
 
@@ -104,6 +104,9 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
         var d = new Date();
         data.creattime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
         data.enabled = 1;
+
+        var templateid = angular.element("#template").val();
+
         if($stateParams.url == null){
             $http.post('contracts',data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                 var str = largeLoad._links.self.href;
@@ -119,7 +122,7 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                     $http.post('contractcontents',contentdata,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                     });
                     pdffield[obj] = contentdata.inputvalue;
-                    $http.post('contractpdf',pdffield,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                    $http.post('contractpdf/'+data.contractno+'&'+templateid,pdffield,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                     });
                     //alert(JSON.stringify(contentdata));
                 });

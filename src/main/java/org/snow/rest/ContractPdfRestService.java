@@ -7,6 +7,7 @@ import com.lowagie.text.pdf.PdfReader;
 import com.lowagie.text.pdf.PdfStamper;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.snow.contractApplication;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
@@ -17,8 +18,8 @@ import java.util.Set;
 @RestController
 public class ContractPdfRestService {
 
-    @RequestMapping(path = "/contractpdf/{id}&{name}", method = RequestMethod.POST)
-    public static String saveContractPdf(@PathVariable("id") Long contractid ,@PathVariable("name") Long templatefilename ,@RequestBody String jsonstr) throws IOException, DocumentException,JSONException {
+    @RequestMapping(path = "/contractpdf/{no}&{tid}", method = RequestMethod.POST)
+    public static String saveContractPdf(@PathVariable("no") String contractno ,@PathVariable("tid") Long templateid ,@RequestBody String jsonstr) throws IOException, DocumentException,JSONException {
         //1 准备要填充的数据
         JSONObject jsObj = new JSONObject(jsonstr);
         Iterator<String> it = jsObj.keys();
@@ -31,9 +32,10 @@ public class ContractPdfRestService {
             }
         }
         //2 读入pdf表单
-        PdfReader reader = new PdfReader("src/main/resources/static/tmpdata/pdf/template/"+templatefilename);
+        String webroot = contractApplication.class.getResource("/").getPath();
+        PdfReader reader = new PdfReader("tmpdata/pdf/template/"+templateid+".pdf");
         //3 根据表单生成一个新的pdf
-        PdfStamper ps = new PdfStamper(reader,new FileOutputStream("src/main/resources/static/tmpdata/pdf/"+contractid+".pdf"));
+        PdfStamper ps = new PdfStamper(reader,new FileOutputStream("src/main/resources/static/pdf/web/contractpdf/C"+contractno+".pdf"));
         //4 获取pdf表单
         AcroFields s = ps.getAcroFields();
         //5给表单添加中文字体 这里采用系统字体。不设置的话，中文可能无法显示
@@ -55,7 +57,7 @@ public class ContractPdfRestService {
         ps.setFormFlattening(true); // 这句不能少
         ps.close();
         reader.close();
-        return "ok666";
+        return "ok666"+webroot;
     }
 
 
