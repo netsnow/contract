@@ -126,6 +126,10 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                     });
                     //alert(JSON.stringify(contentdata));
                 });
+                //file upload
+                var file = angular.element("#contractfile").files[0];
+                $http.post('contractfileupload',file,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                });
                 alert("已保存");
                 $state.go('app.user_contract');
             });
