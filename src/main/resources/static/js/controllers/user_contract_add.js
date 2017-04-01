@@ -138,14 +138,30 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                 approvepdffield.contracttype = templatename;
                 approvepdffield.oppositeside = data.otherpartyname;
                 approvepdffield.contractno = data.contractno;
-                alert(JSON.stringify(approvepdffield));
+                //alert(JSON.stringify(approvepdffield));
                 $http.post('approvepdf/'+data.contractno,approvepdffield,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                 });
 
                 //file upload
-                var file = angular.element("#contractfile").files[0];
-                $http.post('contractfileupload',file,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                var fd = new FormData();
+                var file = document.querySelector('input[type=file]').files[0];
+                fd.append('file', file);
+                $http({
+                    method:'POST',
+                    url:"contractfileupload",
+                    data: fd,
+                    headers: {'Authorization' : localStorage.getItem("jwtToken"),'Content-Type':undefined},
+                    transformRequest: angular.identity
+                })
+                .success( function ( response )
+                {
+                    //上传成功的操作
+                    alert("uplaod success");
                 });
+
+
+                //$http.post('contractfileupload',file,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                //});
                 alert("已保存");
                 $state.go('app.user_contract');
             });
