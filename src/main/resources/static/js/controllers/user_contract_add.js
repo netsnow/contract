@@ -99,6 +99,7 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
         var data = {};
         data.contractno = angular.element("#contractno").val();
         data.contractname = angular.element("#contractname").val();
+        data.otherpartyname = angular.element("#otherpartyname").val();
         data.departmentname = $scope.departmentname;
         data.creatorname = $scope.username;
         var d = new Date();
@@ -106,13 +107,16 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
         data.enabled = 1;
 
         var templateid = angular.element("#template").val();
+        var templatename = angular.element("#template").find("option:selected").text();;
 
         if($stateParams.url == null){
             $http.post('contracts',data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                 var str = largeLoad._links.self.href;
                 var contractid = str.split("/")[str.split("/").length - 1];
                 var pdffield ={};
+
                 $.each($scope.inputename,function(idx, obj) {
+                    //contractcontent value submit
                     var contentdata = {};
                     contentdata.inputename = obj;
                     contentdata.inputname = $scope.inputname[idx];
@@ -121,11 +125,23 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                     contentdata.contractid = contractid;
                     $http.post('contractcontents',contentdata,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                     });
+                    //contract pdf value save
                     pdffield[obj] = contentdata.inputvalue;
-                    $http.post('contractpdf/'+data.contractno+'&'+templateid,pdffield,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
-                    });
                     //alert(JSON.stringify(contentdata));
                 });
+                //contract pdf create
+                $http.post('contractpdf/'+data.contractno+'&'+templateid,pdffield,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                });
+                //approve pdf create
+                var approvepdffield ={};
+                approvepdffield.contractname = data.contractname;
+                approvepdffield.contracttype = templatename;
+                approvepdffield.oppositeside = data.otherpartyname;
+                approvepdffield.contractno = data.contractno;
+                alert(JSON.stringify(approvepdffield));
+                $http.post('approvepdf/'+data.contractno,approvepdffield,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                });
+
                 //file upload
                 var file = angular.element("#contractfile").files[0];
                 $http.post('contractfileupload',file,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {

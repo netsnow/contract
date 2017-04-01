@@ -4,7 +4,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "CONTRACT")
@@ -24,6 +23,11 @@ public class Contract {
     @NotNull
     @Size(min = 1, max = 50)
     private String contractname;
+
+    @Column(name = "OTHERPARTYNAME", length = 50, unique = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    private String otherpartyname;
 
     @Column(name = "DEPARTMENTNAME", length = 50, unique = false)
     @NotNull
@@ -100,4 +104,11 @@ public class Contract {
         this.enabled = enabled;
     }
 
+    public String getOtherpartyname() {
+        return otherpartyname;
+    }
+
+    public void setOtherpartyname(String otherpartyname) {
+        this.otherpartyname = otherpartyname;
+    }
 }
