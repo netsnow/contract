@@ -145,19 +145,22 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                 //file upload
                 var fd = new FormData();
                 var file = document.querySelector('input[type=file]').files[0];
-                fd.append('file', file);
-                $http({
-                    method:'POST',
-                    url:"contractfileupload",
-                    data: fd,
-                    headers: {'Authorization' : localStorage.getItem("jwtToken"),'Content-Type':undefined},
-                    transformRequest: angular.identity
-                })
-                .success( function ( response )
-                {
-                    //上传成功的操作
-                    alert("uplaod success");
-                });
+                if(file){
+                    fd.append('file', file);
+                    $http({
+                        method:'POST',
+                        url:"contractfileupload",
+                        data: fd,
+                        headers: {'Authorization' : localStorage.getItem("jwtToken"),'Content-Type':undefined},
+                        transformRequest: angular.identity
+                    })
+                    .success( function ( response )
+                    {
+                        //上传成功的操作
+                        alert("uplaod success");
+                    });
+                }
+
 
 
                 //$http.post('contractfileupload',file,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
