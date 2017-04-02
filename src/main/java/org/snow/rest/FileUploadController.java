@@ -16,18 +16,18 @@ public class FileUploadController {
         this.storageService = storageService;
     }
 
-    @RequestMapping(path = "/contractfileupload/{no}", method = RequestMethod.POST)
-    public String handleFileUpload(@PathVariable("no") String contractno,@RequestParam("file") MultipartFile file, HttpServletRequest request){
-        String fileName = file.getOriginalFilename();
-        String prefix=fileName.substring(fileName.lastIndexOf(".")+1);
-        String newfileName = contractno + "."+ prefix;
-        storageService.store(file,newfileName);
+    @RequestMapping(path = "/contractfileupload", method = RequestMethod.POST)
+    public String handleFileUpload(@RequestParam("file") MultipartFile file, @RequestParam("filename") String filename , HttpServletRequest request){
+        //String fileName = file.getOriginalFilename();
+        //String prefix=fileName.substring(fileName.lastIndexOf(".")+1);
+        //String newfileName = contractno + "."+ prefix;
+        storageService.store(file,filename);
         //MyPropsConfig myprops = new MyPropsConfig();
         //myprops.getRootpath();
         //URL path = ClassLoader.getSystemResource("");
         //ServletContext context = this.ge
         //Resource res = new ServletContextResource(context,"a.txt");
-        return "OK";
+        return filename;
     }
 
 }

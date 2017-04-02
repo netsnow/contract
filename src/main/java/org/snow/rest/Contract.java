@@ -30,14 +30,17 @@ public class Contract {
     private String otherpartyname;
 
     @Column(name = "DEPARTMENTNAME", length = 50, unique = false)
-    @NotNull
-    @Size(min = 1, max = 50)
+    @Size(min = 0, max = 50)
     private String departmentname;
 
     @Column(name = "CREATORNAME", length = 50, unique = false)
     @NotNull
     @Size(min = 1, max = 50)
     private String creatorname;
+
+    @Column(name = "ATTACHMENT", length = 50, unique = false)
+    @Size(min = 0, max = 50)
+    private String attachment;
 
     @Column(name = "CREATTIME")
     @Temporal(TemporalType.DATE)
@@ -110,5 +113,13 @@ public class Contract {
 
     public void setOtherpartyname(String otherpartyname) {
         this.otherpartyname = otherpartyname;
+    }
+
+    public String getAttachment() {
+        return attachment;
+    }
+
+    public void setAttachment(String attachment) {
+        this.attachment = attachment;
     }
 }

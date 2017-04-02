@@ -97,6 +97,10 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
         //alert("666");
         //contract insert
         var data = {};
+        var file = document.querySelector('input[type=file]').files[0];
+        var fileName = angular.element("#contractfile").val();
+
+
         data.contractno = angular.element("#contractno").val();
         data.contractname = angular.element("#contractname").val();
         data.otherpartyname = angular.element("#otherpartyname").val();
@@ -105,11 +109,19 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
         var d = new Date();
         data.creattime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
         data.enabled = 1;
+        if(file){
+            var timestamp = (new Date()).valueOf();
+            var prefix = fileName.substring(fileName.lastIndexOf('.') + 1);
+            data.attachment = timestamp + "."+ prefix;
+            alert(data.attachment);
+        }
 
         var templateid = angular.element("#template").val();
-        var templatename = angular.element("#template").find("option:selected").text();;
+        var templatename = angular.element("#template").find("option:selected").text();
+
 
         if($stateParams.url == null){
+
             $http.post('contracts',data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                 var str = largeLoad._links.self.href;
                 var contractid = str.split("/")[str.split("/").length - 1];
@@ -144,12 +156,13 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
 
                 //file upload
                 var fd = new FormData();
-                var file = document.querySelector('input[type=file]').files[0];
+
                 if(file){
                     fd.append('file', file);
+                    fd.append('filename', data.attachment);
                     $http({
                         method:'POST',
-                        url:"contractfileupload/"+data.contractno,
+                        url:"contractfileupload",
                         data: fd,
                         headers: {'Authorization' : localStorage.getItem("jwtToken"),'Content-Type':undefined},
                         transformRequest: angular.identity

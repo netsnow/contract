@@ -65,6 +65,7 @@ app.controller('GridContractCtrl', ['$scope', '$http', '$state', function($scope
                      {field: 'creatorname', displayName:'经办人'},
                      {field: 'creattime', displayName:'创建时间'},
                      {field: 'enabled', displayName:'允许编辑'},
+                     {field: 'attachment', displayName:'附件', visible:false},
                      {field: '_links', displayName:'链接', visible:false}]
     };
 
@@ -111,8 +112,9 @@ app.controller('GridContractCtrl', ['$scope', '$http', '$state', function($scope
     angular.element("#contractattachment").bind('click', function (event) {
         if($scope.mySelections.length == 1){
             $no = $scope.mySelections[0].contractno;
+            $filename = $scope.mySelections[0].attachment;
             //$state.go('app.contract_detail',{no:$no});
-            window.open("http://" + window.location.host + "/file/attachment/" + $no);
+            window.open("http://" + window.location.host + "/tmpdata/attachment/" + $filename);
         }else{
             alert("请选择一个合同附件进行下载。");
         }
