@@ -14,9 +14,9 @@ public class Contract {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "CONTRACTNO", length = 15, unique = true)
-    @NotNull
-    @Size(min = 1, max = 15)
+    @Column(name = "CONTRACTNO", length = 50, unique = false)
+    //@NotNull
+    @Size(min = 0, max = 50)
     private String contractno;
 
     @Column(name = "CONTRACTNAME", length = 50, unique = false)

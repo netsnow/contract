@@ -58,7 +58,7 @@ app.controller('GridDepparmentCtrl', ['$scope', '$http', '$state', function($sco
         filterOptions: $scope.filterOptions,
         selectedItems: $scope.mySelections,
         columnDefs: [{field: 'departmentname', displayName: '部门名称'},
-                     {field: 'departmentshortname', displayName:'部门简称'},
+                     {field: 'departmentshortname', displayName:'部门编号'},
                      {field: '_links', displayName:'链接', visible:false}]
     };
 

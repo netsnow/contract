@@ -92,6 +92,7 @@ angular.module('app')
               var deparmentid = largeLoad._embedded.users[0].deparmentId;
               $http.get('departments/'+deparmentid,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                   $scope.departmentname = largeLoad.departmentname
+                  $scope.departmentshortname = largeLoad.departmentshortname
                   //alert($scope.departmentname);
               });
           });

@@ -9,12 +9,11 @@ import javax.validation.constraints.Size;
 public class NumSeq {
 
     @Id
-    @Column(name = "SEQKEY", length =100, unique = true)
-    @Size(min = 1, max = 100)
+    @Column(name = "SEQKEY", length =20, unique = true)
+    @Size(min = 1, max = 20)
     private String seqkey;
 
     @Column(name = "SEQVALUE", unique = false)
-    @Size(min = 1, max = 100)
     private int seqvalue;
 
 

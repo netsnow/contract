@@ -9,6 +9,6 @@ import java.util.List;
 
 @RepositoryRestResource(collectionResourceRel = "users", path = "/users")
 public interface UsersRepository extends PagingAndSortingRepository<User, Long> {
-    @Query("select u from User u where u.username = ?1")
+    //@Query("select u from User u where u.username = ?1")
     List<User> findByUsername(@Param("name") String name);
 }

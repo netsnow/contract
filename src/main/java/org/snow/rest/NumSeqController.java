@@ -25,10 +25,10 @@ public class NumSeqController {
             this.numSeqRepository.save(numSeq);
             return rtnvalue;
         }else{
-        //3，没检索到，则插入该key，value=1，返回1
+        //3，没检索到，则插入该key，value=2，返回1
             NumSeq numSeq = new NumSeq();
             numSeq.setSeqkey(key);
-            numSeq.setSeqvalue(1);
+            numSeq.setSeqvalue(2);
             this.numSeqRepository.save(numSeq);
             return 1;
         }
