@@ -1,16 +1,11 @@
 package org.snow.rest;
 
-import org.snow.config.MyPropsConfig;
 import org.snow.storage.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.net.URL;
 
 @RestController
 public class FileUploadController {
@@ -21,9 +16,12 @@ public class FileUploadController {
         this.storageService = storageService;
     }
 
-    @RequestMapping(path = "/contractfileupload", method = RequestMethod.POST)
-    public String handleFileUpload(@RequestParam("file") MultipartFile file, HttpServletRequest request){
-        storageService.store(file);
+    @RequestMapping(path = "/contractfileupload/{no}", method = RequestMethod.POST)
+    public String handleFileUpload(@PathVariable("no") String contractno,@RequestParam("file") MultipartFile file, HttpServletRequest request){
+        String fileName = file.getOriginalFilename();
+        String prefix=fileName.substring(fileName.lastIndexOf(".")+1);
+        String newfileName = contractno + "."+ prefix;
+        storageService.store(file,newfileName);
         //MyPropsConfig myprops = new MyPropsConfig();
         //myprops.getRootpath();
         //URL path = ClassLoader.getSystemResource("");

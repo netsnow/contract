@@ -33,8 +33,7 @@ public class ContractContent {
     private String inputtype;
 
     @Column(name = "INPUTVALUE", length = 100, unique = false)
-    @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 0, max = 100)
     private String inputvalue;
 
     public Long getId() {

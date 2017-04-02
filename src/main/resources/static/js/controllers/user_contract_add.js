@@ -149,7 +149,7 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                     fd.append('file', file);
                     $http({
                         method:'POST',
-                        url:"contractfileupload",
+                        url:"contractfileupload/"+data.contractno,
                         data: fd,
                         headers: {'Authorization' : localStorage.getItem("jwtToken"),'Content-Type':undefined},
                         transformRequest: angular.identity
