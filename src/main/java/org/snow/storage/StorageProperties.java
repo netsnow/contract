@@ -8,7 +8,9 @@ public class StorageProperties {
     /**
      * Folder location for storing files
      */
-    private String location = "C:\\Users\\snow\\Documents\\GitHub\\contract\\build\\resources\\main\\static\\tmpdata\\attachment";
+    String root = System.getProperty("user.dir");
+    
+    private String location = root + "/build/resources/main/static/tmpdata/attachment";
 
     public String getLocation() {
         return location;
