@@ -17,6 +17,10 @@ public class ContractContent {
     @NotNull
     private Long contractid;
 
+    @Column(name = "ORDERID")
+    @NotNull
+    private Long orderid;
+
     @Column(name = "INPUTENAME", length = 40, unique = false)
     @NotNull
     @Size(min = 1, max = 40)
@@ -85,4 +89,11 @@ public class ContractContent {
     }
 
 
+    public Long getOrderid() {
+        return orderid;
+    }
+
+    public void setOrderid(Long orderid) {
+        this.orderid = orderid;
+    }
 }

@@ -146,6 +146,7 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                         contentdata.inputtype = "text";
                         contentdata.inputvalue = angular.element("#"+obj).val();
                         contentdata.contractid = contractid;
+                        contentdata.orderid = idx;
                         $http.post('contractcontents',contentdata,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                         });
                         //contract pdf value save
