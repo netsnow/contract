@@ -35,13 +35,13 @@ public class ContractPdfRestService {
         //String webroot = contractApplication.class.getResource("/").getPath();
         String root = System.getProperty("user.dir");
 
-        PdfReader reader = new PdfReader(root+"/build/resources/main/static/tmpdata/pdf/template/"+templateid+".pdf");
+        PdfReader reader = new PdfReader(root+"/static/tmpdata/pdf/template/"+templateid+".pdf");
         //3 根据表单生成一个新的pdf
-        PdfStamper ps = new PdfStamper(reader,new FileOutputStream(root+"/build/resources/main/static/pdf/web/contractpdf/C"+contractno+".pdf"));
+        PdfStamper ps = new PdfStamper(reader,new FileOutputStream(root+"/static/pdf/web/contractpdf/C"+contractno+".pdf"));
         //4 获取pdf表单
         AcroFields s = ps.getAcroFields();
         //5给表单添加中文字体 这里采用系统字体。不设置的话，中文可能无法显示
-        BaseFont bf = BaseFont.createFont(root+"/build/resources/main/static/tmpdata/pdf/template/simsun.ttc,1",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+        BaseFont bf = BaseFont.createFont(root+"/static/tmpdata/pdf/template/simsun.ttc,1",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
         //BaseFont bf = BaseFont.createFont("STSong-Light","UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
         s.addSubstitutionFont(bf);
         //6遍历pdf表单表格，同时给表格赋值
@@ -78,13 +78,13 @@ public class ContractPdfRestService {
         //2 读入pdf表单
         //String webroot = contractApplication.class.getResource("/").getPath();
         String root = System.getProperty("user.dir");
-        PdfReader reader = new PdfReader(root+"/build/resources/main/static/tmpdata/pdf/template/approve.pdf");
+        PdfReader reader = new PdfReader(root+"/static/tmpdata/pdf/template/approve.pdf");
         //3 根据表单生成一个新的pdf
-        PdfStamper ps = new PdfStamper(reader,new FileOutputStream(root+"/build/resources/main/static/pdf/web/contractpdf/A"+contractno+".pdf"));
+        PdfStamper ps = new PdfStamper(reader,new FileOutputStream(root+"/static/pdf/web/contractpdf/A"+contractno+".pdf"));
         //4 获取pdf表单
         AcroFields s = ps.getAcroFields();
         //5给表单添加中文字体 这里采用系统字体。不设置的话，中文可能无法显示
-        BaseFont bf = BaseFont.createFont(root+"/build/resources/main/static/tmpdata/pdf/template/simsun.ttc,1",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+        BaseFont bf = BaseFont.createFont(root+"/static/tmpdata/pdf/template/simsun.ttc,1",BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
         //BaseFont bf = BaseFont.createFont("STSong-Light","UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
         s.addSubstitutionFont(bf);
         //6遍历pdf表单表格，同时给表格赋值

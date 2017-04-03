@@ -10,7 +10,7 @@ public class StorageProperties {
      */
     String root = System.getProperty("user.dir");
     
-    private String location = root + "/build/resources/main/static/tmpdata/attachment";
+    private String location = root + "/static/tmpdata/attachment";
 
     public String getLocation() {
         return location;
