@@ -87,14 +87,15 @@ angular.module('app')
         }else{
           //username set
           $scope.username = response.data.username;
+
           //deparment set
-          $http.get('users/search/findByUsername?name='+$scope.username,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
-              var deparmentid = largeLoad._embedded.users[0].deparmentId;
-              $http.get('departments/'+deparmentid,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+          $http.get('departments/'+response.data.departmentId,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+              //var deparmentid = largeLoad._embedded.users[0].deparmentId;
+              //$http.get('departments/'+deparmentid,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                   $scope.departmentname = largeLoad.departmentname
                   $scope.departmentshortname = largeLoad.departmentshortname
                   //alert($scope.departmentname);
-              });
+              //});
           });
           //menu set
           var role = 0;

@@ -1,12 +1,12 @@
 package org.snow.security;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.snow.model.security.Authority;
 import org.snow.model.security.User;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public final class JwtUserFactory {
 
@@ -23,7 +23,8 @@ public final class JwtUserFactory {
                 user.getPassword(),
                 mapToGrantedAuthorities(user.getAuthorities()),
                 user.getEnabled(),
-                user.getLastPasswordResetDate()
+                user.getLastPasswordResetDate(),
+                user.getDeparmentId()
         );
     }
 
