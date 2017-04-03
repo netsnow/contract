@@ -51,6 +51,10 @@ public class Contract {
     @NotNull
     private Boolean enabled;
 
+    @Column(name = "TEMPLATEID")
+    @NotNull
+    private Long templateid;
+
     public Long getId() {
         return id;
     }
@@ -121,5 +125,13 @@ public class Contract {
 
     public void setAttachment(String attachment) {
         this.attachment = attachment;
+    }
+
+    public Long getTemplateid() {
+        return templateid;
+    }
+
+    public void setTemplateid(Long templateid) {
+        this.templateid = templateid;
     }
 }

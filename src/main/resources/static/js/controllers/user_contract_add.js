@@ -28,17 +28,23 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
     if($stateParams.url){
         //alert($stateParams.url);
         angular.element("#templateselect").hide();
+        //angular.element("#contractname").attr("disabled","disabled");
+        //angular.element("#otherpartyname").attr("disabled","disabled");
         angular.element("#contractcontent").show();
         angular.element("#textinput").hide();
         $http.get($stateParams.url,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
             //alert(largeLoad.departmentname);
             var str = largeLoad._links.self.href;
             var contractid = str.split("/")[str.split("/").length - 1];
+            $scope.templateid = largeLoad.templateid;
+
             angular.element("#contractno").val(largeLoad.contractno);
             angular.element("#contractname").val(largeLoad.contractname);
+            angular.element("#otherpartyname").val(largeLoad.otherpartyname);
             //find contractcontent
             $http.get("contractcontents/search/findByContractid?id="+contractid,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                 var contractcontentid = [];
+                var inputename=[];
                 $.each(largeLoad._embedded.contractcontents,function(idx, obj) {
                     var str1 = obj._links.self.href;
                     contractcontentid[idx] = str1.split("/")[str1.split("/").length - 1];
@@ -51,8 +57,12 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                     angular.element(node).find("input").val(obj.inputvalue);
                     angular.element("#dyncontent").append(node);
                     angular.element("#textinput").hide();
+
+                    inputename[idx] = obj.inputename;
+
                 });
                 $scope.contractcontentid = contractcontentid;
+                $scope.inputename = inputename;
             });
             //alert(JSON.stringify(largeLoad));
         });
@@ -102,13 +112,15 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
 
     angular.element("#savebutton").bind('click', function (event) {
         //alert("666");
-        //contract insert
+
+        // page value get
         var data = {};
         var file = document.querySelector('input[type=file]').files[0];
         var fileName = angular.element("#contractfile").val();
+        var templateid = angular.element("#template").val();
+        var templatename = angular.element("#template").find("option:selected").text();
 
-
-
+        // contract field set (add and edit)
         data.contractname = angular.element("#contractname").val();
         data.otherpartyname = angular.element("#otherpartyname").val();
         data.departmentname = $scope.departmentname;
@@ -116,19 +128,16 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
         var d = new Date();
         data.creattime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
         data.enabled = 1;
+        data.templateid = templateid;
 
         if(file){
             var timestamp = (new Date()).valueOf();
             var prefix = fileName.substring(fileName.lastIndexOf('.') + 1);
             data.attachment = timestamp + "."+ prefix;
-            alert(data.attachment);
+            //alert(data.attachment);
         }
-
-        var templateid = angular.element("#template").val();
-        var templatename = angular.element("#template").find("option:selected").text();
-
-
         if($stateParams.url == null){
+            //contract add
             data.contractno = "TD" + $scope.departmentshortname + d.getFullYear()+padNumber((d.getMonth()+1),2)+padNumber(d.getDate(),2);
             $http.get('numseqget/'+ data.contractno,data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                 data.contractno = data.contractno + padNumber(largeLoad,3);
@@ -168,7 +177,6 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
 
                     //file upload
                     var fd = new FormData();
-
                     if(file){
                         fd.append('file', file);
                         fd.append('filename', data.attachment);
@@ -182,11 +190,9 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                         .success( function ( response )
                         {
                             //上传成功的操作
-                            alert("uplaod success");
+                            //alert("uplaod success");
                         });
                     }
-
-
 
                     //$http.post('contractfileupload',file,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                     //});
@@ -195,15 +201,63 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                 });
             });
         }else{
-            $.each($scope.contractcontentid,function(idx, obj) {
-                var contentdata = {};
-                contentdata.inputvalue = angular.element("#"+obj).val();
-                $http.patch('contractcontents/'+obj,contentdata,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+            //contract edit
+            //alert($scope.templateid);
+            data.contractno = angular.element("#contractno").val();
+            data.templateid = $scope.templateid;
+            $http.patch($stateParams.url,data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                var str = $stateParams.url;
+                var contractid = str.split("/")[str.split("/").length - 1];
+                var pdffield ={};
+                $.each($scope.contractcontentid,function(idx, obj) {
+                    var contentdata = {};
+                    contentdata.inputvalue = angular.element("#"+obj).val();
+
+                    $http.patch('contractcontents/'+obj,contentdata,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                    });
+                    pdffield[$scope.inputename[idx]] = contentdata.inputvalue;
                 });
 
+                //contract pdf create
+                $http.post('contractpdf/'+contractid+'&'+data.templateid,pdffield,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                });
+
+                //approve pdf create
+                var approvepdffield ={};
+                approvepdffield.contractname = data.contractname;
+                //approvepdffield.contracttype = $scope.templatename;
+                approvepdffield.oppositeside = data.otherpartyname;
+                approvepdffield.contractno = data.contractno;
+                //alert(JSON.stringify(approvepdffield));
+                $http.get('templates/'+$scope.templateid,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                    approvepdffield.contracttype = largeLoad.templatename;
+                    $http.post('approvepdf/'+contractid,approvepdffield,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                    });
+                });
+
+
+                //file upload
+                var fd = new FormData();
+                if(file){
+                    fd.append('file', file);
+                    fd.append('filename', data.attachment);
+                    $http({
+                        method:'POST',
+                        url:"contractfileupload",
+                        data: fd,
+                        headers: {'Authorization' : localStorage.getItem("jwtToken"),'Content-Type':undefined},
+                        transformRequest: angular.identity
+                    })
+                    .success( function ( response )
+                    {
+                        //上传成功的操作
+                        //alert("uplaod success");
+                    });
+                }
+                alert("已修改！");
+                $state.go('app.user_contract');
+
             });
-            alert("已修改！");
-            $state.go('app.user_contract');
         }
 
 
