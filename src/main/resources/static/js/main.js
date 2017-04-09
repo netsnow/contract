@@ -86,6 +86,7 @@ angular.module('app')
           window.location.href = "http://"+window.location.host+"#/access/signin";
         }else{
           //username set
+          $scope.userid = response.data.id;
           $scope.username = response.data.username;
 
           //deparment set

@@ -47,7 +47,7 @@ public class JwtUser implements UserDetails {
         this.departmentId = departmentId;
     }
 
-    @JsonIgnore
+
     public Long getId() {
         return id;
     }
