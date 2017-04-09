@@ -281,6 +281,16 @@ angular.module('app')
                       }]
                   }
               })
+              .state('app.user_pwdchange', {
+                  url: '/user_pwdchange',
+                  templateUrl: 'tpl/user_pwdchange.html',
+                  resolve: {
+                      deps: ['uiLoad',
+                        function( uiLoad){
+                          return uiLoad.load('js/controllers/user_pwdchange.js');
+                      }]
+                  }
+              })
               //user_dashboard
               .state('app.user_dashboard', {
                   url: '/user_dashboard',
