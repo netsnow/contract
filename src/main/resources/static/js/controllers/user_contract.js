@@ -115,7 +115,7 @@ app.controller('GridUserContractCtrl', ['$scope', '$http', '$state', function($s
             //$state.go('app.contract_detail',{no:$no});
             window.open("http://" + window.location.host + "/pdf/web/viewer.html?A" + contractid);
         }else{
-            alert("请选择一个合同审批表进行查看。");
+            alert("请选择一个合同审批单进行查看。");
         }
     });
     angular.element("#contractattachment").bind('click', function (event) {
@@ -127,6 +127,21 @@ app.controller('GridUserContractCtrl', ['$scope', '$http', '$state', function($s
         }else{
             alert("请选择一个合同附件进行下载。");
         }
+    });
+    angular.element("#deletebutton2").bind('click', function (event) {
+        $("#deletebutton").click();
+    });
+    angular.element("#editbutton2").bind('click', function (event) {
+        $("#editbutton").click();
+    });
+    angular.element("#contracttext2").bind('click', function (event) {
+        $("#contracttext").click();
+    });
+    angular.element("#contractapprove2").bind('click', function (event) {
+        $("#contractapprove").click();
+    });
+    angular.element("#contractattachment2").bind('click', function (event) {
+        $("#contractattachment").click();
     });
 
 }]);

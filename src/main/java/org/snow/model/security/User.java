@@ -20,14 +20,14 @@ public class User {
     //@SequenceGenerator(name = "user_seq", sequenceName = "user_seq", allocationSize = 1)
     private Long id;
 
-    @Column(name = "USERNO", length = 50, unique = true)
+    @Column(name = "USERNO", length = 50, unique = false)
     @NotNull
     @Size(min = 1, max = 50)
     private String userno;
 
     @Column(name = "USERNAME", length = 50, unique = true)
     @NotNull
-    @Size(min = 4, max = 50)
+    @Size(min = 1, max = 50)
     private String username;
 
     @Column(name = "PASSWORD", length = 100)

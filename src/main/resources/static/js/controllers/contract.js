@@ -110,7 +110,7 @@ app.controller('GridContractCtrl', ['$scope', '$http', '$state', function($scope
             //$state.go('app.contract_detail',{no:$no});
             window.open("http://" + window.location.host + "/pdf/web/viewer.html?A" + contractid);
         }else{
-            alert("请选择一个合同审批表进行查看。");
+            alert("请选择一个合同审批单进行查看。");
         }
     });
     angular.element("#contractattachment").bind('click', function (event) {
@@ -126,5 +126,19 @@ app.controller('GridContractCtrl', ['$scope', '$http', '$state', function($scope
     angular.element("#searchbtn").bind('click', function (event) {
         $scope.getPagedDataAsync($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage,angular.element("#searchtext").val());
     });
-
+    angular.element("#contracttext2").bind('click', function (event) {
+        $("#contracttext").click();
+    });
+    angular.element("#contractapprove2").bind('click', function (event) {
+        $("#contractapprove").click();
+    });
+    angular.element("#contractattachment2").bind('click', function (event) {
+        $("#contractattachment").click();
+    });
+    angular.element("#statechangetrue2").bind('click', function (event) {
+        $("#statechangetrue").click();
+    });
+    angular.element("#statechangefalse2").bind('click', function (event) {
+        $("#statechangefalse").click();
+    });
 }]);

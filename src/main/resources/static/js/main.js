@@ -12,8 +12,8 @@ angular.module('app')
 
       // config
       $scope.app = {
-        name: 'Contract',
-        version: '1.3.3',
+        name: '标准合同管理',
+        version: '1.0.0',
         // for chart colors
         color: {
           primary: '#7266ba',
