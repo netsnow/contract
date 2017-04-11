@@ -60,7 +60,7 @@ app.controller('GridUserContractCtrl', ['$scope', '$http', '$state', function($s
         filterOptions: $scope.filterOptions,
         selectedItems: $scope.mySelections,
         columnDefs: [{field: 'contractno', displayName: '合同编号'},
-                     {field: 'contractname', displayName:'合同名称'},
+                     {field: 'contractname', displayName:'合同名称',width: 480},
                      {field: 'otherpartyname', displayName:'合同对方名称'},
                      {field: 'departmentname', displayName:'所属部门'},
                      {field: 'creatorname', displayName:'经办人'},
