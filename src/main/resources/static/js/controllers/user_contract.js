@@ -54,6 +54,7 @@ app.controller('GridUserContractCtrl', ['$scope', '$http', '$state', function($s
         data: 'myData',
         enablePaging: true,
         showFooter: true,
+        showSelectionCheckbox: true,
         totalServerItems: 'totalServerItems',
         pagingOptions: $scope.pagingOptions,
         filterOptions: $scope.filterOptions,
