@@ -47,9 +47,11 @@ public class Contract {
     @NotNull
     private Date creattime;
 
-    @Column(name = "ENABLED")
+    @Column(name = "ENABLED", length = 30)
     @NotNull
-    private Boolean enabled;
+    @Size(min = 0, max = 30)
+    //0 编辑中 ，1 待审核 ，2 已审核 ， 9 审核驳回
+    private String enabled;
 
     @Column(name = "TEMPLATEID")
     @NotNull
@@ -103,11 +105,11 @@ public class Contract {
         this.creattime = creattime;
     }
 
-    public Boolean getEnabled() {
+    public String getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(Boolean enabled) {
+    public void setEnabled(String enabled) {
         this.enabled = enabled;
     }
 

@@ -10,7 +10,8 @@ import java.util.List;
 
 @RepositoryRestResource(collectionResourceRel = "contracts", path = "/contracts")
 public interface ContractRepository extends PagingAndSortingRepository<Contract, Long> {
-    @Query("select u from Contract u where u.creatorname = ?1 and u.enabled = 1")
+    //@Query("select u from Contract u where u.creatorname = ?1 and u.enabled = 1")
+    @Query("select u from Contract u where u.creatorname = ?1")
     List<Contract> findByCreatorname(@Param("name") String name);
 
 }

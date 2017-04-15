@@ -60,12 +60,12 @@ app.controller('GridUserContractCtrl', ['$scope', '$http', '$state', function($s
         filterOptions: $scope.filterOptions,
         selectedItems: $scope.mySelections,
         columnDefs: [{field: 'contractno', displayName: '合同编号'},
-                     {field: 'contractname', displayName:'合同名称',width: 480},
+                     {field: 'contractname', displayName:'合同名称',width: 420},
                      {field: 'otherpartyname', displayName:'合同对方名称'},
                      {field: 'departmentname', displayName:'所属部门'},
                      {field: 'creatorname', displayName:'经办人'},
                      {field: 'creattime', displayName:'创建时间'},
-                     {field: 'enabled', displayName:'允许编辑'},
+                     {field: 'enabled', displayName:'状态'},
                      {field: 'attachment', displayName:'附件', visible:false},
                      {field: '_links', displayName:'链接', visible:false}]
     };
@@ -91,8 +91,12 @@ app.controller('GridUserContractCtrl', ['$scope', '$http', '$state', function($s
 
     angular.element("#editbutton").bind('click', function (event) {
         if($scope.mySelections.length == 1){
-            $url = $scope.mySelections[0]._links.self.href;
-            $state.go('app.user_contract_edit',{url:$url});
+            if($scope.mySelections[0].enabled == "编辑中" || $scope.mySelections[0].enabled == "审核驳回"){
+                $url = $scope.mySelections[0]._links.self.href;
+                $state.go('app.user_contract_edit',{url:$url});
+            }else{
+                alert("送审中，无法编辑！");
+            }
         }else{
             alert("请选择一个合同进行编辑。");
         }

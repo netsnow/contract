@@ -144,7 +144,7 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
         data.creatorname = $scope.username;
         var d = new Date();
         data.creattime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
-        data.enabled = 1;
+        data.enabled = "编辑中";
         data.templateid = templateid;
 
         if(file){
@@ -188,6 +188,7 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                     approvepdffield.contracttype = templatename;
                     approvepdffield.oppositeside = data.otherpartyname;
                     approvepdffield.contractno = data.contractno;
+                    approvepdffield.contractdetail = pdffield;
                     //alert(JSON.stringify(approvepdffield));
                     $http.post('approvepdf/'+contractid,approvepdffield,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                     });
@@ -245,6 +246,7 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                 //approvepdffield.contracttype = $scope.templatename;
                 approvepdffield.oppositeside = data.otherpartyname;
                 approvepdffield.contractno = data.contractno;
+                approvepdffield.contractdetail = pdffield;
                 //alert(JSON.stringify(approvepdffield));
                 $http.get('templates/'+$scope.templateid,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                     approvepdffield.contracttype = largeLoad.templatename;
@@ -292,7 +294,18 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
     });
 
     angular.element("#submitbutton").bind('click', function (event) {
-        alert("666");
+        if($stateParams.url == null){
+            alert("请先保存！");
+        }else{
+            var data = {};
+            data.enabled = "待审核";
+            $http.patch($stateParams.url,data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                alert("已提交！");
+                $state.go('app.user_contract');
+            });
+
+
+        }
 
     });
 

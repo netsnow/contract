@@ -65,7 +65,7 @@ app.controller('GridContractCtrl', ['$scope', '$http', '$state', function($scope
                      {field: 'departmentname', displayName:'所属部门'},
                      {field: 'creatorname', displayName:'经办人'},
                      {field: 'creattime', displayName:'创建时间'},
-                     {field: 'enabled', displayName:'允许编辑'},
+                     {field: 'enabled', displayName:'状态'},
                      {field: 'attachment', displayName:'附件', visible:false},
                      {field: '_links', displayName:'链接', visible:false}]
     };
@@ -74,9 +74,9 @@ app.controller('GridContractCtrl', ['$scope', '$http', '$state', function($scope
     angular.element("#statechangetrue").bind('click', function (event) {
         $.each($scope.mySelections,function(idx, obj) {
             var data = {};
-            data.enabled = 1;
+            data.enabled = "审核驳回";
             $http.patch(obj._links.self.href,data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
-                alert("已更新");
+                alert("已驳回");
                 $state.go('app.contract',{},{reload:true});
             });
         });
@@ -84,9 +84,9 @@ app.controller('GridContractCtrl', ['$scope', '$http', '$state', function($scope
     angular.element("#statechangefalse").bind('click', function (event) {
         $.each($scope.mySelections,function(idx, obj) {
             var data = {};
-            data.enabled = 0;
+            data.enabled = "已审核";
             $http.patch(obj._links.self.href,data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
-                alert("已更新");
+                alert("已审核");
                 $state.go('app.contract',{},{reload:true});
             });
         });
