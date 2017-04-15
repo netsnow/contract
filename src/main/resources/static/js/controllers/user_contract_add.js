@@ -58,7 +58,8 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
             //find contractcontent
             $http.get("contractcontents/search/findByContractid?id="+contractid,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                 var contractcontentid = [];
-                var inputename=[];
+                var inputename = [];
+                var inputname = [];
                 $.each(largeLoad._embedded.contractcontents,function(idx, obj) {
                     var str1 = obj._links.self.href;
                     contractcontentid[idx] = str1.split("/")[str1.split("/").length - 1];
@@ -73,10 +74,12 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                     angular.element("#textinput").hide();
 
                     inputename[idx] = obj.inputename;
+                    inputname[idx] = obj.inputname;
 
                 });
                 $scope.contractcontentid = contractcontentid;
                 $scope.inputename = inputename;
+                $scope.inputname = inputname;
             });
             //alert(JSON.stringify(largeLoad));
         });
@@ -163,6 +166,7 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                     var str = largeLoad._links.self.href;
                     var contractid = str.split("/")[str.split("/").length - 1];
                     var pdffield ={};
+                    var pdffielddetail = "";
 
                     $.each($scope.inputename,function(idx, obj) {
                         //contractcontent value submit
@@ -177,6 +181,7 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                         });
                         //contract pdf value save
                         pdffield[obj] = contentdata.inputvalue;
+                        pdffielddetail = pdffielddetail + $scope.inputname[idx] + ":" + contentdata.inputvalue + "\n";
                         //alert(JSON.stringify(contentdata));
                     });
                     //contract pdf create
@@ -188,7 +193,7 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                     approvepdffield.contracttype = templatename;
                     approvepdffield.oppositeside = data.otherpartyname;
                     approvepdffield.contractno = data.contractno;
-                    approvepdffield.contractdetail = pdffield;
+                    approvepdffield.contractdetail = pdffielddetail;
                     //alert(JSON.stringify(approvepdffield));
                     $http.post('approvepdf/'+contractid,approvepdffield,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                     });
@@ -227,6 +232,8 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                 var str = $stateParams.url;
                 var contractid = str.split("/")[str.split("/").length - 1];
                 var pdffield ={};
+                var pdffielddetail = "";
+
                 $.each($scope.contractcontentid,function(idx, obj) {
                     var contentdata = {};
                     contentdata.inputvalue = angular.element("#"+obj).val();
@@ -234,6 +241,7 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                     $http.patch('contractcontents/'+obj,contentdata,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                     });
                     pdffield[$scope.inputename[idx]] = contentdata.inputvalue;
+                    pdffielddetail = pdffielddetail + $scope.inputname[idx] + ":" + contentdata.inputvalue + "\n";
                 });
 
                 //contract pdf create
@@ -246,7 +254,7 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                 //approvepdffield.contracttype = $scope.templatename;
                 approvepdffield.oppositeside = data.otherpartyname;
                 approvepdffield.contractno = data.contractno;
-                approvepdffield.contractdetail = pdffield;
+                approvepdffield.contractdetail = pdffielddetail;
                 //alert(JSON.stringify(approvepdffield));
                 $http.get('templates/'+$scope.templateid,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                     approvepdffield.contracttype = largeLoad.templatename;
