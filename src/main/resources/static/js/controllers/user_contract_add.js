@@ -99,19 +99,18 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                 var inputename=[];
                 $.each(largeLoad._embedded.templatedefines,function(idx, obj) {
                     //alert(obj.inputname);
-                    var node = angular.element("#textinput").clone(true);
-                    angular.element(node).show();
-                    angular.element(node).attr("id",idx);
-                    angular.element(node).find("label").text(obj.inputname);
-                    angular.element(node).find("input").attr("id",obj.inputename);
-                    if(obj.inputtype == "moneybig"){
-                        angular.element(node).find("input").attr("name","moneybig");
+                    if(obj.inputtype != "moneybig"){
+                        var node = angular.element("#textinput").clone(true);
+                        angular.element(node).show();
+                        angular.element(node).attr("id",idx);
+                        angular.element(node).find("label").text(obj.inputname);
+                        angular.element(node).find("input").attr("id",obj.inputename);
+                        angular.element("#dyncontent").append(node);
+                        angular.element("#textinput").hide();
+                        inputname[idx] = obj.inputname;
+                        inputename[idx] = obj.inputename;
                     }
-                    angular.element("#dyncontent").append(node);
-                    angular.element("#textinput").hide();
-                    inputname[idx] = obj.inputname;
-                    inputename[idx] = obj.inputename;
-                    //alert($scope.inputename[idx]);
+
                 });
                 $scope.inputname = inputname;
                 $scope.inputename = inputename;
@@ -184,6 +183,8 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                         pdffielddetail = pdffielddetail + $scope.inputname[idx] + ":" + contentdata.inputvalue + "\n";
                         //alert(JSON.stringify(contentdata));
                     });
+                    pdffield["moneybig"] = numToCny(pdffield["moneysmall"]);
+
                     //contract pdf create
                     $http.post('contractpdf/'+contractid+'&'+templateid,pdffield,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                     });
@@ -243,7 +244,7 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                     pdffield[$scope.inputename[idx]] = contentdata.inputvalue;
                     pdffielddetail = pdffielddetail + $scope.inputname[idx] + ":" + contentdata.inputvalue + "\n";
                 });
-
+                pdffield["moneybig"] = numToCny(pdffield["moneysmall"]);
                 //contract pdf create
                 $http.post('contractpdf/'+contractid+'&'+data.templateid,pdffield,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                 });
