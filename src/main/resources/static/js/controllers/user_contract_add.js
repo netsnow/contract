@@ -99,18 +99,15 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                 var inputename=[];
                 $.each(largeLoad._embedded.templatedefines,function(idx, obj) {
                     //alert(obj.inputname);
-                    if(obj.inputtype != "moneybig"){
-                        var node = angular.element("#textinput").clone(true);
-                        angular.element(node).show();
-                        angular.element(node).attr("id",idx);
-                        angular.element(node).find("label").text(obj.inputname);
-                        angular.element(node).find("input").attr("id",obj.inputename);
-                        angular.element("#dyncontent").append(node);
-                        angular.element("#textinput").hide();
-                        inputname[idx] = obj.inputname;
-                        inputename[idx] = obj.inputename;
-                    }
-
+                    var node = angular.element("#textinput").clone(true);
+                    angular.element(node).show();
+                    angular.element(node).attr("id",idx);
+                    angular.element(node).find("label").text(obj.inputname);
+                    angular.element(node).find("input").attr("id",obj.inputename);
+                    angular.element("#dyncontent").append(node);
+                    angular.element("#textinput").hide();
+                    inputname[idx] = obj.inputname;
+                    inputename[idx] = obj.inputename;
                 });
                 $scope.inputname = inputname;
                 $scope.inputename = inputename;

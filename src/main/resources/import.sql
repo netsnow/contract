@@ -41,7 +41,6 @@ INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VA
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (105, '交货方式', 'deliveryway','text',1);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (106, '交货时间', 'deliverytime','text',1);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (107, '金额小写', 'moneysmall','text',1);
-INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (108, '金额大写', 'moneybig','text',1);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (109, '金额', 'money','text',1);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (110, '支付方式', 'payway','text',1);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (111, '质保期限', 'serviceterm','text',1);
@@ -56,7 +55,6 @@ INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VA
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (205, '项目名', 'projectname','text',2);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (206, '提供物品', 'supplyitem','text',2);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (207, '提供物品明细', 'supplyitemdetail','text',2);
-INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (208, '金额大写', 'moneybig','text',2);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (209, '金额小写', 'moneysmall','text',2);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (210, '品质要求', 'quality','text',2);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (211, '交货地点', 'deliveryplace','text',2);
@@ -72,7 +70,6 @@ INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VA
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (302, '乙方', 'secondparty','text',3);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (303, '购买物品', 'buyitem','text',3);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (304, '采购货品', 'purchasedgoods','text',3);
-INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (305, '金额大写', 'moneybig','text',3);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (306, '金额小写', 'moneysmall','text',3);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (307, '物资计划编号', 'itemplanno','text',3);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (308, '项目名', 'projectname','text',3);
@@ -85,7 +82,6 @@ INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VA
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (402, '乙方', 'secondparty','text',4);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (403, '购买物品', 'buyitem','text',4);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (404, '金额小写', 'moneysmall','text',4);
-INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (405, '金额大写', 'moneybig','text',4);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (406, '交货地点', 'deliveryplace','text',4);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (407, '合同签订时间', 'signdate','text',4);
 ##05_劳务协议
@@ -93,7 +89,6 @@ INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VA
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (502, '乙方', 'secondparty','text',5);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (503, '工程名', 'subprojectname','text',5);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (504, '金额小写', 'moneysmall','text',5);
-INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (505, '金额大写', 'moneybig','text',5);
 ##06_劳务用工协议
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (601, '甲方', 'firstparty','text',6);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (602, '乙方', 'secondparty','text',6);
@@ -103,7 +98,6 @@ INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VA
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (606, '工作期限自', 'begindate','text',6);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (607, '工作期限至', 'enddate','text',6);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (608, '金额小写', 'moneysmall','text',6);
-INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (609, '金额大写', 'moneybig','text',6);
 ##07_机械（设备）租赁合同-工程
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (701, '甲方', 'firstparty','text',7);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (702, '乙方', 'secondparty','text',7);
@@ -116,7 +110,6 @@ INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VA
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (802, '乙方', 'secondparty','text',8);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (803, '租赁物品', 'rentalitem','text',8);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (804, '金额小写', 'moneysmall','text',8);
-INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (805, '金额大写', 'moneybig','text',8);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (806, '物资计划编号', 'itemplanno','text',8);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (807, '项目名', 'projectname','text',8);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (808, '工程名', 'subprojectname','text',8);
@@ -130,7 +123,6 @@ INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VA
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (905, '工程地点', 'projectplace','text',9);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (906, '协议工期', 'limitdate','text',9);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (907, '金额小写', 'moneysmall','text',9);
-INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (908, '金额大写', 'moneybig','text',9);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (909, '甲方负责人姓名', 'firstpartyname','text',9);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (910, '甲方负责人电话', 'firstpartyphone','text',9);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (911, '乙方负责人姓名', 'secondpartyname','text',9);
@@ -147,7 +139,6 @@ INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VA
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (1007, '工程内容-面积', 'projectacreage','text',10);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (1008, '占绿时间', 'greendate','text',10);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (1009, '金额小写', 'moneysmall','text',10);
-INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (1010, '金额大写', 'moneybig','text',10);
 ##11_安全生产管理协议
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (1101, '甲方', 'firstparty','text',11);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (1102, '乙方', 'secondparty','text',11);
