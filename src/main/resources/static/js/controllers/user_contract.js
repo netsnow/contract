@@ -107,7 +107,8 @@ app.controller('GridUserContractCtrl', ['$scope', '$http', '$state', function($s
             var contractid = str.split("/")[str.split("/").length - 1];
             //$no = $scope.mySelections[0].contractno;
             //$state.go('app.contract_detail',{no:$no});
-            window.open("http://" + window.location.host + "/pdf/web/viewer.html?C" + contractid);
+            //window.open("http://" + window.location.host + "/pdf/web/viewer.html?C" + contractid);
+            window.open("http://" + window.location.host + "/pdf/web/contractpdf/C" + contractid + ".pdf");
         }else{
             alert("请选择一个合同进行查看。");
         }
@@ -118,7 +119,8 @@ app.controller('GridUserContractCtrl', ['$scope', '$http', '$state', function($s
             var contractid = str.split("/")[str.split("/").length - 1];
             //$no = $scope.mySelections[0].contractno;
             //$state.go('app.contract_detail',{no:$no});
-            window.open("http://" + window.location.host + "/pdf/web/viewer.html?A" + contractid);
+            //window.open("http://" + window.location.host + "/pdf/web/viewer.html?A" + contractid);
+            window.open("http://" + window.location.host + "/pdf/web/contractpdf/A" + contractid + ".pdf");
         }else{
             alert("请选择一个合同审批单进行查看。");
         }
