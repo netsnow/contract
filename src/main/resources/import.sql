@@ -40,13 +40,27 @@ INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VA
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (104, '交货地点', 'deliveryplace','text',1);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (105, '交货方式', 'deliveryway','text',1);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (106, '交货时间', 'deliverytime','text',1);
-INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (107, '金额小写', 'moneysmall','text',1);
-INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (109, '金额', 'money','text',1);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (107, '金额小写（元）', 'moneysmall','text',1);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (109, '金额（元）', 'money','text',1);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (110, '支付方式', 'payway','text',1);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (111, '质保期限', 'serviceterm','text',1);
-INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (112, '履约保证金', 'depositvalue','text',1);
-INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (113, '保证金补足日数', 'depositpayday','text',1);
-INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (114, '保证金归还日数', 'depositbackday','text',1);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (112, '履约保证金（元）', 'depositvalue','text',1);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (113, '保证金补足日数（日）', 'depositpayday','text',1);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (114, '保证金归还日数（日）', 'depositbackday','text',1);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (115, '甲方法人', 'firstpartylegal','text',1);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (116, '甲方纳税人识别号', 'firstpartytaxno','text',1);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (117, '甲方地址', 'firstpartyaddress','text',1);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (118, '甲方电话', 'firstpartytel','text',1);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (119, '甲方开户行', 'firstpartybank','text',1);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (120, '甲方账号', 'firstpartybankacc','text',1);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (121, '乙方法人', 'secondpartylegal','text',1);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (122, '乙方纳税人识别号', 'secondpartytaxno','text',1);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (123, '乙方地址', 'secondpartyaddress','text',1);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (124, '乙方电话', 'secondpartytel','text',1);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (125, '乙方开户行', 'secondpartybank','text',1);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (126, '乙方账号', 'secondpartybankacc','text',1);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (127, '备注信息', 'comment','text',1);
+
 ##02_苗木花卉草坪采购合同
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (201, '甲方', 'firstparty','text',2);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (202, '乙方', 'secondparty','text',2);
@@ -55,12 +69,12 @@ INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VA
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (205, '项目名', 'projectname','text',2);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (206, '提供物品', 'supplyitem','text',2);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (207, '提供物品明细', 'supplyitemdetail','text',2);
-INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (209, '金额小写', 'moneysmall','text',2);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (209, '金额小写（元）', 'moneysmall','text',2);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (210, '品质要求', 'quality','text',2);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (211, '交货地点', 'deliveryplace','text',2);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (212, '交货方式', 'deliveryway','text',2);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (213, '货物装卸方式', 'stevedoreway','text',2);
-INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (214, '使用项目', 'useproject','text',2);
+##INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (214, '使用项目', 'useproject','text',2);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (215, '付款期限日数', 'paylimitday','text',2);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (216, '违约金百分比', 'penaltypercentage','text',2);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (218, '赔偿金百分比', 'compensationpercentage','text',2);
