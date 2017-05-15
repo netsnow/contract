@@ -97,13 +97,27 @@ INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VA
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (302, '乙方', 'secondparty','text',3);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (303, '购买物品', 'buyitem','text',3);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (304, '采购货品', 'purchasedgoods','text',3);
-INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (306, '金额小写', 'moneysmall','text',3);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (306, '金额小写（元）', 'moneysmall','text',3);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (307, '物资计划编号', 'itemplanno','text',3);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (308, '项目名', 'projectname','text',3);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (309, '工程名', 'subprojectname','text',3);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (310, '交货地点', 'deliveryplace','text',3);
-INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (311, '交货方式', 'deliveryway','text',3);
-INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (312, '货物装卸方式', 'stevedoreway','text',3);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (311, '交货方式（①乙方负责送货；②乙方负责委托第三方运输，甲方负责运费；③甲方自提自运）', 'deliveryway','text',3);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (312, '货物装卸方式（①乙方负责装卸；②乙方负责装、甲方负责卸；③甲方负责装卸）', 'stevedoreway','text',3);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (313, '甲方法人', 'firstpartylegal','text',3);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (314, '甲方纳税人识别号', 'firstpartytaxno','text',3);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (315, '甲方地址', 'firstpartyaddress','text',3);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (316, '甲方电话', 'firstpartytel','text',3);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (317, '甲方开户行', 'firstpartybank','text',3);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (318, '甲方账号', 'firstpartybankacc','text',3);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (319, '乙方法人', 'secondpartylegal','text',3);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (320, '乙方纳税人识别号', 'secondpartytaxno','text',3);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (321, '乙方地址', 'secondpartyaddress','text',3);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (322, '乙方电话', 'secondpartytel','text',3);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (323, '乙方开户行', 'secondpartybank','text',3);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (324, '乙方账号', 'secondpartybankacc','text',3);
+INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (325, '备注信息', 'comment','text',3);
+
 ##04_工程物资采购合同
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (401, '甲方', 'firstparty','text',4);
 INSERT INTO templatedefine (id, inputname, inputename,inputtype, template_id) VALUES (402, '乙方', 'secondparty','text',4);
