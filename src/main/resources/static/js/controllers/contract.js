@@ -72,24 +72,44 @@ app.controller('GridContractCtrl', ['$scope', '$http', '$state', function($scope
 
 
     angular.element("#statechangetrue").bind('click', function (event) {
+        var doflg = true;
         $.each($scope.mySelections,function(idx, obj) {
-            var data = {};
-            data.enabled = "审核驳回";
-            $http.patch(obj._links.self.href,data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
-                alert("已驳回");
-                $state.go('app.contract',{},{reload:true});
-            });
+            if(obj.enabled == "编辑中"){
+                doflg = false;
+            }
         });
+        if(doflg){
+            $.each($scope.mySelections,function(idx, obj) {
+                var data = {};
+                data.enabled = "审核驳回";
+                $http.patch(obj._links.self.href,data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                    alert("已驳回");
+                    $state.go('app.contract',{},{reload:true});
+                });
+            });
+        }else{
+            alert("编辑中合同的无法驳回");
+        }
     });
     angular.element("#statechangefalse").bind('click', function (event) {
+        var doflg = true;
         $.each($scope.mySelections,function(idx, obj) {
-            var data = {};
-            data.enabled = "已审核";
-            $http.patch(obj._links.self.href,data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
-                alert("已审核");
-                $state.go('app.contract',{},{reload:true});
-            });
+            if(obj.enabled == "编辑中"||obj.enabled == "审核驳回"){
+                doflg = false;
+            }
         });
+        if(doflg){
+            $.each($scope.mySelections,function(idx, obj) {
+                var data = {};
+                data.enabled = "已审核";
+                $http.patch(obj._links.self.href,data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                    alert("已审核");
+                    $state.go('app.contract',{},{reload:true});
+                });
+            });
+        }else{
+            alert("编辑中及审核驳回的合同无法审批");
+        }
     });
 
     angular.element("#contracttext").bind('click', function (event) {
