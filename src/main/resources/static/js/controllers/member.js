@@ -9,7 +9,7 @@ app.controller('GridMemberCtrl', ['$scope', '$http', '$state', function($scope, 
         pageSize: 20,
         currentPage: 1
     };  
-    $scope.setPagingData = function(data, page, pageSize){  
+    $scope.setPagingData = function(data, page, pageSize){
         var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
         $scope.myData = pagedData;
         $scope.totalServerItems = data.length;
@@ -22,14 +22,14 @@ app.controller('GridMemberCtrl', ['$scope', '$http', '$state', function($scope, 
             var data;
             if (searchText) {
                 var ft = searchText.toLowerCase();
-                $http.get('users',{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                $http.get('users?page=0&size=1000',{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                     data = largeLoad._embedded.users.filter(function(item) {
                         return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
                     });
                     $scope.setPagingData(data,page,pageSize);
                 });            
             } else {
-                $http.get('users',{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                $http.get('users?page=0&size=1000',{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                     $scope.setPagingData(largeLoad._embedded.users,page,pageSize);
                 });
             }

@@ -22,14 +22,14 @@ app.controller('GridContractCtrl', ['$scope', '$http', '$state', function($scope
             var data;
             if (searchText) {
                 var ft = searchText.toLowerCase();
-                $http.get('contracts',{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                $http.get('contracts?page=0&size=100000',{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                     data = largeLoad._embedded.contracts.filter(function(item) {
                         return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
                     });
                     $scope.setPagingData(data,page,pageSize);
                 });
             } else {
-                $http.get('contracts',{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                $http.get('contracts?page=0&size=100000',{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                     $scope.setPagingData(largeLoad._embedded.contracts,page,pageSize);
                 });
             }
