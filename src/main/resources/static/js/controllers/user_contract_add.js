@@ -154,7 +154,7 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
         }
         if($stateParams.url == null){
             //contract add
-            data.contractno = "TD" + $scope.departmentshortname + d.getFullYear()+padNumber((d.getMonth()+1),2)+padNumber(d.getDate(),2);
+            data.contractno = "TD" + $scope.departmentshortname + String(d.getFullYear()).substring(2) + padNumber((d.getMonth()+1),2) + padNumber(d.getDate(),2);
             $http.get('numseqget/'+ data.contractno,data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                 data.contractno = data.contractno + padNumber(largeLoad,3);
 
