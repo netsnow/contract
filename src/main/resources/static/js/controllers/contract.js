@@ -55,6 +55,9 @@ app.controller('GridContractCtrl', ['$scope', '$http', '$state', function($scope
         enablePaging: true,
         showFooter: true,
         showSelectionCheckbox: true,
+        enableColumnResize:true,
+        enableColumnReordering:true,
+        i18n:'zh-cn',
         totalServerItems: 'totalServerItems',
         pagingOptions: $scope.pagingOptions,
         filterOptions: $scope.filterOptions,
@@ -74,7 +77,7 @@ app.controller('GridContractCtrl', ['$scope', '$http', '$state', function($scope
     angular.element("#statechangetrue").bind('click', function (event) {
         var doflg = true;
         $.each($scope.mySelections,function(idx, obj) {
-            if(obj.enabled == "编辑中"){
+            if(obj.enabled == "编辑中" || obj.enabled == "已审核"){
                 doflg = false;
             }
         });

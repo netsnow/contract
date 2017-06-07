@@ -22,14 +22,14 @@ app.controller('GridUserContractCtrl', ['$scope', '$http', '$state', function($s
             var data;
             if (searchText) {
                 var ft = searchText.toLowerCase();
-                $http.get('contracts/search/findByCreatorname?name='+$scope.username,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                $http.get('contracts/search/findByCreatorname?name='+encodeURI(encodeURI($scope.username)),{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                     data = largeLoad._embedded.contracts.filter(function(item) {
                         return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
                     });
                     $scope.setPagingData(data,page,pageSize);
                 });
             } else {
-                $http.get('contracts/search/findByCreatorname?name='+$scope.username,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                $http.get('contracts/search/findByCreatorname?name='+encodeURI(encodeURI($scope.username)),{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                     $scope.setPagingData(largeLoad._embedded.contracts,page,pageSize);
                 });
             }
@@ -55,6 +55,9 @@ app.controller('GridUserContractCtrl', ['$scope', '$http', '$state', function($s
         enablePaging: true,
         showFooter: true,
         showSelectionCheckbox: true,
+        enableColumnResize:true,
+        enableColumnReordering:true,
+        i18n:'zh-cn',
         totalServerItems: 'totalServerItems',
         pagingOptions: $scope.pagingOptions,
         filterOptions: $scope.filterOptions,
@@ -70,20 +73,30 @@ app.controller('GridUserContractCtrl', ['$scope', '$http', '$state', function($s
                      {field: '_links', displayName:'链接', visible:false}]
     };
     angular.element("#deletebutton").bind('click', function (event) {
+        var checkflg = true;
         $.each($scope.mySelections,function(idx, obj) {
-            $http.delete(obj._links.self.href,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
-                var str = obj._links.self.href;
-                var contractid = str.split("/")[str.split("/").length - 1];
-                $http.get("contractcontents/search/findByContractid?id="+contractid,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
-                    $.each(largeLoad._embedded.contractcontents,function(idx, obj) {
-                        $http.delete(obj._links.self.href,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+            if($scope.mySelections[idx].enabled == "编辑中"){
+                $http.delete(obj._links.self.href,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                    var str = obj._links.self.href;
+                    var contractid = str.split("/")[str.split("/").length - 1];
+                    $http.get("contractcontents/search/findByContractid?id="+contractid,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                        $.each(largeLoad._embedded.contractcontents,function(idx, obj) {
+                            $http.delete(obj._links.self.href,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
 
+                            });
                         });
                     });
                 });
-            });
+            }else{
+                checkflg = false;
+
+            }
         });
-        alert("已删除");
+        if(checkflg){
+            alert("已删除");
+        }else{
+            alert("只有编辑中合同才能被删除。");
+        }
         $state.go('app.user_contract',{},{reload:true});
         //alert("666");
 
@@ -95,7 +108,7 @@ app.controller('GridUserContractCtrl', ['$scope', '$http', '$state', function($s
                 $url = $scope.mySelections[0]._links.self.href;
                 $state.go('app.user_contract_edit',{url:$url});
             }else{
-                alert("送审中，无法编辑！");
+                alert($scope.mySelections[0].enabled + "，无法编辑！");
             }
         }else{
             alert("请选择一个合同进行编辑。");
