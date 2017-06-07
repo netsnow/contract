@@ -42,6 +42,7 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
     if($stateParams.url){
         //alert($stateParams.url);
         angular.element("#templateselect").hide();
+        angular.element("#firstparty").hide();
         //angular.element("#contractname").attr("disabled","disabled");
         //angular.element("#otherpartyname").attr("disabled","disabled");
         angular.element("#contractcontent").show();
@@ -135,6 +136,7 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
         var fileName = angular.element("#contractfile").val();
         var templateid = angular.element("#template").val();
         var templatename = angular.element("#template").find("option:selected").text();
+        var firstpartyshortname = angular.element("#firstpartyshortname").val();
 
         // contract field set (add and edit)
         data.contractname = angular.element("#contractname").val();
@@ -154,9 +156,9 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
         }
         if($stateParams.url == null){
             //contract add
-            data.contractno = "TD" + $scope.departmentshortname + String(d.getFullYear()).substring(2) + padNumber((d.getMonth()+1),2) + padNumber(d.getDate(),2);
+            data.contractno = firstpartyshortname + $scope.departmentshortname + String(d.getFullYear()).substring(2) + padNumber((d.getMonth()+1),2) + padNumber(d.getDate(),2);
             $http.get('numseqget/'+ data.contractno,data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
-                data.contractno = data.contractno + padNumber(largeLoad,3);
+                data.contractno = data.contractno + padNumber(largeLoad,2);
 
                 $http.post('contracts',data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                     var str = largeLoad._links.self.href;
