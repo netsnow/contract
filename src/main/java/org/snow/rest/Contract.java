@@ -38,6 +38,12 @@ public class Contract {
     @Size(min = 1, max = 50)
     private String creatorname;
 
+    @Column(name = "CREATORFULLNAME", length = 50, unique = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    private String creatorfullname;
+
+
     @Column(name = "ATTACHMENT", length = 50, unique = false)
     @Size(min = 0, max = 50)
     private String attachment;
@@ -135,5 +141,13 @@ public class Contract {
 
     public void setTemplateid(Long templateid) {
         this.templateid = templateid;
+    }
+
+    public String getCreatorfullname() {
+        return creatorfullname;
+    }
+
+    public void setCreatorfullname(String creatorfullname) {
+        this.creatorfullname = creatorfullname;
     }
 }

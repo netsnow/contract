@@ -143,6 +143,7 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
         data.otherpartyname = angular.element("#otherpartyname").val();
         data.departmentname = $scope.departmentname;
         data.creatorname = $scope.username;
+        data.creatorfullname = $scope.fullname;
         var d = new Date();
         data.creattime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
         data.enabled = "编辑中";

@@ -66,7 +66,7 @@ app.controller('GridContractCtrl', ['$scope', '$http', '$state', function($scope
                      {field: 'contractname', displayName:'合同名称',width: 480},
                      {field: 'otherpartyname', displayName:'合同对方名称'},
                      {field: 'departmentname', displayName:'所属部门'},
-                     {field: 'creatorname', displayName:'经办人'},
+                     {field: 'creatorfullname', displayName:'经办人'},
                      {field: 'creattime', displayName:'创建时间'},
                      {field: 'enabled', displayName:'状态'},
                      {field: 'attachment', displayName:'附件', visible:false},

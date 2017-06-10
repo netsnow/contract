@@ -88,6 +88,7 @@ angular.module('app')
           //username set
           $scope.userid = response.data.id;
           $scope.username = response.data.username;
+          $scope.fullname = response.data.fullname;
 
           //deparment set
           $http.get('departments/'+response.data.departmentId,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {

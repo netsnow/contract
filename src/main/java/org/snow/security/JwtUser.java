@@ -23,6 +23,7 @@ public class JwtUser implements UserDetails {
     private final boolean enabled;
     private final Date lastPasswordResetDate;
     private final Long departmentId;
+    private final String fullname;
 
     public JwtUser(
           Long id,
@@ -33,7 +34,8 @@ public class JwtUser implements UserDetails {
           String password, Collection<? extends GrantedAuthority> authorities,
           boolean enabled,
           Date lastPasswordResetDate,
-          Long departmentId
+          Long departmentId,
+          String fullname
     ) {
         this.id = id;
         this.username = username;
@@ -45,6 +47,7 @@ public class JwtUser implements UserDetails {
         this.enabled = enabled;
         this.lastPasswordResetDate = lastPasswordResetDate;
         this.departmentId = departmentId;
+        this.fullname = fullname;
     }
 
 
@@ -110,5 +113,9 @@ public class JwtUser implements UserDetails {
 
     public Long getDepartmentId() {
         return departmentId;
+    }
+
+    public String getFullname() {
+        return fullname;
     }
 }
