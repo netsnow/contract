@@ -63,6 +63,10 @@ public class Contract {
     @NotNull
     private Long templateid;
 
+    @Column(name = "REJECTREASON", length = 200)
+    @Size(min = 0, max = 200)
+    private String rejectreason;
+
     public Long getId() {
         return id;
     }
@@ -149,5 +153,13 @@ public class Contract {
 
     public void setCreatorfullname(String creatorfullname) {
         this.creatorfullname = creatorfullname;
+    }
+
+    public String getRejectreason() {
+        return rejectreason;
+    }
+
+    public void setRejectreason(String rejectreason) {
+        this.rejectreason = rejectreason;
     }
 }
