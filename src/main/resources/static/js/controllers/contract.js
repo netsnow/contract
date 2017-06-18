@@ -70,6 +70,7 @@ app.controller('GridContractCtrl', ['$scope', '$http', '$state', function($scope
                      {field: 'creattime', displayName:'创建时间'},
                      {field: 'enabled', displayName:'状态'},
                      {field: 'attachment', displayName:'附件', visible:false},
+                     {field: 'templateid', displayName:'模板', visible:false},
                      {field: '_links', displayName:'链接', visible:false}]
     };
 
@@ -103,11 +104,23 @@ app.controller('GridContractCtrl', ['$scope', '$http', '$state', function($scope
         });
         if(doflg){
             $.each($scope.mySelections,function(idx, obj) {
-                var data = {};
-                data.enabled = "已审核";
-                $http.patch(obj._links.self.href,data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
-                    alert("已审核");
-                    $state.go('app.contract',{},{reload:true});
+                var str = obj._links.self.href;
+                var contractid = str.split("/")[str.split("/").length - 1];
+                var pdffield ={};
+                pdffield['status'] = "已审核";
+                $http.get("contractcontents/search/findByContractid?id="+contractid,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }})
+                .success(function (largeLoad) {
+                    $.each(largeLoad._embedded.contractcontents,function(idx2, obj2) {
+                        pdffield[obj2.inputename] = obj2.inputvalue;
+                    });
+                    $http.post('contractpdf/'+contractid+'&'+obj.templateid,pdffield,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                    });
+                    var data = {};
+                    data.enabled = "已审核";
+                    $http.patch(obj._links.self.href,data,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
+                        alert("已审核");
+                        $state.go('app.contract',{},{reload:true});
+                    });
                 });
             });
         }else{
