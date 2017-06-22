@@ -107,7 +107,7 @@ app.controller('GridContractCtrl', ['$scope', '$http', '$state', function($scope
                 var str = obj._links.self.href;
                 var contractid = str.split("/")[str.split("/").length - 1];
                 var pdffield ={};
-                pdffield['status'] = "已审核";
+                pdffield['status'] = " ";
                 $http.get("contractcontents/search/findByContractid?id="+contractid,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }})
                 .success(function (largeLoad) {
                     $.each(largeLoad._embedded.contractcontents,function(idx2, obj2) {

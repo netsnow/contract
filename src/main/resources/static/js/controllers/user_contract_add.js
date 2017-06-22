@@ -185,7 +185,7 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                         //alert(JSON.stringify(contentdata));
                     });
                     pdffield["moneybig"] = numToCny(pdffield["moneysmall"]);
-
+                    pdffield['status'] = "待审核";
                     //contract pdf create
                     $http.post('contractpdf/'+contractid+'&'+templateid,pdffield,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                     });
@@ -246,6 +246,7 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                     pdffielddetail = pdffielddetail + $scope.inputname[idx] + ":" + contentdata.inputvalue + "\n";
                 });
                 pdffield["moneybig"] = numToCny(pdffield["moneysmall"]);
+                pdffield['status'] = "待审核";
                 //contract pdf create
                 $http.post('contractpdf/'+contractid+'&'+data.templateid,pdffield,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                 });
