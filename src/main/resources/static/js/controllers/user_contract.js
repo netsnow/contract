@@ -62,7 +62,7 @@ app.controller('GridUserContractCtrl', ['$scope', '$http', '$state', function($s
         pagingOptions: $scope.pagingOptions,
         filterOptions: $scope.filterOptions,
         selectedItems: $scope.mySelections,
-        columnDefs: [{field: 'contractno', displayName: '合同编号'},
+        columnDefs: [{field: 'contractno', displayName: '合同编号',width: 120},
                      {field: 'contractname', displayName:'合同名称',width: 420},
                      {field: 'otherpartyname', displayName:'合同对方名称'},
                      {field: 'departmentname', displayName:'所属部门'},
