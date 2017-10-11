@@ -66,7 +66,11 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                     var str1 = obj._links.self.href;
                     contractcontentid[idx] = str1.split("/")[str1.split("/").length - 1];
 
-                    var node = angular.element("#textinput").clone(true);
+                    if(obj.inputtype=="text"){
+                        var node = angular.element("#textinput").clone(true);
+                    }else if(obj.inputtype=="rtf"){
+                        var node = angular.element("#rtfinput").clone(true);
+                    }
                     angular.element(node).show();
                     angular.element(node).attr("id",idx);
                     angular.element(node).find("label").text(obj.inputname);
@@ -74,6 +78,7 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                     angular.element(node).find("input").val(obj.inputvalue);
                     angular.element("#dyncontent").append(node);
                     angular.element("#textinput").hide();
+                    angular.element("#rtfinput").hide();
 
                     inputename[idx] = obj.inputename;
                     inputname[idx] = obj.inputname;
@@ -99,20 +104,29 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                 angular.element("#dyncontent").children().remove();
                 var inputname=[];
                 var inputename=[];
+                var inputtype=[];
                 $.each(largeLoad._embedded.templatedefines,function(idx, obj) {
                     //alert(obj.inputname);
-                    var node = angular.element("#textinput").clone(true);
+                    if(obj.inputtype=="text"){
+                        var node = angular.element("#textinput").clone(true);
+                        angular.element(node).find("input").attr("id",obj.inputename);
+                    }else if(obj.inputtype=="rtf"){
+                        var node = angular.element("#rtfinput").clone(true);
+                        angular.element(node).find("rtfinput").attr("id",obj.inputename);
+                    }
                     angular.element(node).show();
                     angular.element(node).attr("id",idx);
                     angular.element(node).find("label").text(obj.inputname);
-                    angular.element(node).find("input").attr("id",obj.inputename);
                     angular.element("#dyncontent").append(node);
                     angular.element("#textinput").hide();
+                    angular.element("#rtfinput").hide();
                     inputname[idx] = obj.inputname;
                     inputename[idx] = obj.inputename;
+                    inputtype[idx] = obj.inputtype;
                 });
                 $scope.inputname = inputname;
                 $scope.inputename = inputename;
+                $scope.inputtype = inputtype;
             });
         }else{
             angular.element("#contractcontent").hide();
