@@ -97,7 +97,7 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
     angular.element("#template").bind('change', function (event) {
         var templateid = angular.element("#template").val();
         //alert(templateid+":"+angular.element("#template").text());
-        if(templateid!=""){
+        if(templateid !=""){
 
             angular.element("#contractcontent").show();
             $http.get("templates/"+templateid+"/templateDefines",{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
@@ -187,8 +187,12 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                         var contentdata = {};
                         contentdata.inputename = obj;
                         contentdata.inputname = $scope.inputname[idx];
-                        contentdata.inputtype = "text";
-                        contentdata.inputvalue = angular.element("#"+obj).val();
+                        contentdata.inputtype = $scope.inputtype[idx];
+                        if(contentdata.inputtype == "text"){
+                            contentdata.inputvalue = angular.element("#"+obj).val();
+                        }else if(contentdata.inputtype == "rtf"){
+                            contentdata.inputvalue = angular.element("#"+obj).html();
+                        }
                         contentdata.contractid = contractid;
                         contentdata.orderid = idx;
                         $http.post('contractcontents',contentdata,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
