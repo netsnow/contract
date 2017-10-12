@@ -62,31 +62,36 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
                 var contractcontentid = [];
                 var inputename = [];
                 var inputname = [];
+                var inputtype = [];
                 $.each(largeLoad._embedded.contractcontents,function(idx, obj) {
                     var str1 = obj._links.self.href;
                     contractcontentid[idx] = str1.split("/")[str1.split("/").length - 1];
 
                     if(obj.inputtype=="text"){
                         var node = angular.element("#textinput").clone(true);
+                        angular.element(node).find("input").val(obj.inputvalue);
+                        angular.element(node).find("input").attr("id",contractcontentid[idx]);
                     }else if(obj.inputtype=="rtf"){
                         var node = angular.element("#rtfinput").clone(true);
+                        angular.element(node).find("rtfinput").html(obj.inputvalue);
+                        angular.element(node).find("rtfinput").attr("id",contractcontentid[idx]);
                     }
                     angular.element(node).show();
                     angular.element(node).attr("id",idx);
                     angular.element(node).find("label").text(obj.inputname);
-                    angular.element(node).find("input").attr("id",contractcontentid[idx]);
-                    angular.element(node).find("input").val(obj.inputvalue);
                     angular.element("#dyncontent").append(node);
                     angular.element("#textinput").hide();
                     angular.element("#rtfinput").hide();
 
                     inputename[idx] = obj.inputename;
                     inputname[idx] = obj.inputname;
+                    inputtype[idx] = obj.inputtype;
 
                 });
                 $scope.contractcontentid = contractcontentid;
                 $scope.inputename = inputename;
                 $scope.inputname = inputname;
+                $scope.inputtype = inputtype;
             });
             //alert(JSON.stringify(largeLoad));
         });
