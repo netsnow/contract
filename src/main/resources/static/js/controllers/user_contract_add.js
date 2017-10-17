@@ -261,8 +261,13 @@ app.controller('FormUserContractCtrl', ['$scope','$http','$state','$stateParams'
 
                 $.each($scope.contractcontentid,function(idx, obj) {
                     var contentdata = {};
-                    contentdata.inputvalue = angular.element("#"+obj).val();
-
+                    //contentdata.inputvalue = angular.element("#"+obj).val();
+                    contentdata.inputtype = $scope.inputtype[idx];
+                    if(contentdata.inputtype == "text"){
+                        contentdata.inputvalue = angular.element("#"+obj).val();
+                    }else if(contentdata.inputtype == "rtf"){
+                        contentdata.inputvalue = angular.element("#"+obj).html();
+                    }
                     $http.patch('contractcontents/'+obj,contentdata,{ headers : {'Authorization' : localStorage.getItem("jwtToken") }}).success(function (largeLoad) {
                     });
                     pdffield[$scope.inputename[idx]] = contentdata.inputvalue;

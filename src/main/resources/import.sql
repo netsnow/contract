@@ -3,7 +3,31 @@
 # INSERT INTO user (id, username, password, firstname, lastname, email, enabled, lastpasswordresetdate) VALUES (2, 'user', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'user', 'user', 'enabled@user.com', 1, PARSEDATETIME('01-01-2016','dd-MM-yyyy'));
 # INSERT INTO user (id, username, password, firstname, lastname, email, enabled, lastpasswordresetdate) VALUES (3, 'disabled', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'user', 'user', 'disabled@user.com', 0, PARSEDATETIME('01-01-2016','dd-MM-yyyy'));
 
-INSERT INTO deparment (id, deparmentname, deparmentshortname) VALUES (1, '系统默认部门', '01');
+INSERT INTO deparment (id, deparmentname, deparmentshortname) VALUES (1, '系统默认部门1', '01');
+INSERT INTO deparment (id, deparmentname, deparmentshortname) VALUES (2, '系统默认部门2', '02');
+INSERT INTO deparment (id, deparmentname, deparmentshortname) VALUES (3, '系统默认部门3', '03');
+INSERT INTO deparment (id, deparmentname, deparmentshortname) VALUES (4, '系统默认部门4', '04');
+INSERT INTO deparment (id, deparmentname, deparmentshortname) VALUES (5, '系统默认部门5', '05');
+INSERT INTO deparment (id, deparmentname, deparmentshortname) VALUES (6, '系统默认部门6', '06');
+INSERT INTO deparment (id, deparmentname, deparmentshortname) VALUES (7, '系统默认部门7', '07');
+INSERT INTO deparment (id, deparmentname, deparmentshortname) VALUES (8, '系统默认部门8', '08');
+INSERT INTO deparment (id, deparmentname, deparmentshortname) VALUES (9, '系统默认部门9', '09');
+INSERT INTO deparment (id, deparmentname, deparmentshortname) VALUES (10, '系统默认部门10', '10');
+INSERT INTO deparment (id, deparmentname, deparmentshortname) VALUES (11, '系统默认部门11', '11');
+INSERT INTO deparment (id, deparmentname, deparmentshortname) VALUES (12, '系统默认部门12', '12');
+INSERT INTO deparment (id, deparmentname, deparmentshortname) VALUES (13, '系统默认部门13', '13');
+INSERT INTO deparment (id, deparmentname, deparmentshortname) VALUES (14, '系统默认部门14', '14');
+INSERT INTO deparment (id, deparmentname, deparmentshortname) VALUES (15, '系统默认部门15', '15');
+INSERT INTO deparment (id, deparmentname, deparmentshortname) VALUES (16, '系统默认部门16', '16');
+INSERT INTO deparment (id, deparmentname, deparmentshortname) VALUES (17, '系统默认部门17', '17');
+INSERT INTO deparment (id, deparmentname, deparmentshortname) VALUES (18, '系统默认部门18', '18');
+INSERT INTO deparment (id, deparmentname, deparmentshortname) VALUES (19, '系统默认部门19', '19');
+INSERT INTO deparment (id, deparmentname, deparmentshortname) VALUES (20, '系统默认部门20', '20');
+INSERT INTO deparment (id, deparmentname, deparmentshortname) VALUES (21, '系统默认部门21', '21');
+INSERT INTO deparment (id, deparmentname, deparmentshortname) VALUES (22, '系统默认部门22', '22');
+INSERT INTO deparment (id, deparmentname, deparmentshortname) VALUES (23, '系统默认部门23', '23');
+INSERT INTO deparment (id, deparmentname, deparmentshortname) VALUES (24, '系统默认部门24', '24');
+INSERT INTO deparment (id, deparmentname, deparmentshortname) VALUES (25, '系统默认部门25', '25');
 
 INSERT INTO USER (id, username, password, firstname, lastname, email, enabled, lastpasswordresetdate, deparment_id,userno,fullname) values (1, 'admin', '$2a$08$lDnHPz7eUkSi6ao14Twuau08mzhWrL4kyZGGU5xfiGALO/Vxd5DOi', 'admin', 'admin', 'admin@admin.com', 1, '2016-01-01', 1,0001,"admin123");
 INSERT INTO USER (id, username, password, firstname, lastname, email, enabled, lastpasswordresetdate, deparment_id,userno,fullname) VALUES (2, 'user', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'user', 'user', 'enabled@user.com', 1, '2016-01-01', 1,0002,"user123");

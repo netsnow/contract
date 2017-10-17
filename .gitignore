@@ -20,6 +20,8 @@
 # .idea/uiDesigner.xml
 
 # Gradle:
+lib/
+jar/
 build/
 build/resources/main/static/js/
 build/resources/main/static/tpl/
@@ -69,3 +71,31 @@ buildNumber.properties
 hs_err_pid*
 
 
+
+.gradle/2.13/taskArtifacts/cache.properties.lock 下午3.51.29
+
+.gradle/2.13/taskArtifacts/cache.properties.lock
+
+.gradle/2.13/taskArtifacts/cache.properties.lock
+
+.gradle/2.13/taskArtifacts/fileHashes 下午3.51.29.bin
+
+.gradle/2.13/taskArtifacts/fileSnapshots.bin
+
+*.bin
+
+.gradle/2.13/taskArtifacts/taskArtifacts.bin
+
+.gradle/2.13/taskArtifacts/cache.properties.lock
+
+META-INF/MANIFEST.MF
+
+src/main/java/META-INF/MANIFEST.MF
+
+.gradle/2.13/taskArtifacts/cache.properties.lock
+
+.gradle/2.13/taskArtifacts/fileHashes.bin
+
+src/main/resources/static/tmpdata/pdf/contract1.pdf
+
+src/META-INF/MANIFEST.MF
